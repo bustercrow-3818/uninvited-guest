@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdd3ma8h0l4jm"]
+[gd_scene load_steps=5 format=3 uid="uid://cdd3ma8h0l4jm"]
 
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="1_8pjfm"]
+[ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="2_58nl1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_n7dou"]
-size = Vector2(128, 16)
+size = Vector2(1280, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pjfm"]
-size = Vector2(128, 16)
+size = Vector2(1280, 16)
 
 [node name="temp_plat" type="StaticBody2D"]
 
@@ -19,3 +20,6 @@ shape = SubResource("RectangleShape2D_8pjfm")
 [node name="player" parent="." instance=ExtResource("1_8pjfm")]
 position = Vector2(0, -32)
 motion_mode = 0
+
+[node name="npc" parent="." instance=ExtResource("2_58nl1")]
+position = Vector2(-40, -40)

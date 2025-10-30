@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc73q1ensdj1b"]
+[gd_scene load_steps=15 format=3 uid="uid://cc73q1ensdj1b"]
 
 [ext_resource type="Script" uid="uid://bnelc3bixqywx" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://cmjifxdyu4v4u" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://bbjnctfd74jt1" path="res://entities/player/player_movement.tscn" id="3_sglur"]
+[ext_resource type="Script" uid="uid://c42bjnljdtwcj" path="res://entities/player/player_movement.gd" id="4_bls4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
 atlas = ExtResource("1_symyc")
@@ -70,20 +72,22 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_symyc"]
 radius = 8.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "move_instructions")]
 modulate = Color(1, 1, 1, 0.7529412)
+z_index = 1
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 platform_on_leave = 2
 platform_floor_layers = 4294967294
 script = ExtResource("1_abrql")
-move_speed = 40.0
 dash_speed = 800.0
 dash_time = 0.12
+sprite = NodePath("AnimatedSprite2D")
+move_speed = 40.0
 gravity = 1.0
 terminal_velocity = 30.0
-sprite = NodePath("AnimatedSprite2D")
+move_instructions = NodePath("player_movement")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvtmh")
@@ -104,3 +108,11 @@ offset_right = 32.0
 offset_bottom = -1.0
 scale = Vector2(0.5, 0.5)
 text = "test"
+
+[node name="player_movement" parent="." instance=ExtResource("3_sglur")]
+script = ExtResource("4_bls4j")
+dash_speed = 800.0
+dash_time = 0.12
+move_speed = 40.0
+gravity = 1.0
+terminal_velocity = 30.0

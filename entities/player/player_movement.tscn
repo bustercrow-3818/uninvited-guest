@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bbjnctfd74jt1"]
+
+[node name="player_movement" type="Node"]

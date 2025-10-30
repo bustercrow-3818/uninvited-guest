@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6by0hr2yqoun"]
+
+[ext_resource type="Script" uid="uid://dp3vx4bhsowe1" path="res://entities/npc/npc.gd" id="1_e3lg2"]
+[ext_resource type="Texture2D" uid="uid://clm43k8aygw46" path="res://assets/icon.svg" id="2_7bf1a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfxk4"]
+atlas = ExtResource("2_7bf1a")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6suo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfxk4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiv41"]
+size = Vector2(128, 128)
+
+[node name="npc" type="CharacterBody2D" node_paths=PackedStringArray("walk_timer")]
+scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_e3lg2")
+walk_timer = NodePath("walk_timer")
+walk_timer_interval = Vector2(1, 2)
+move_speed = 40.0
+gravity = 4.0
+terminal_velocity = 100.0
+metadata/_custom_type_script = "uid://b8jd64csh3kd3"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y6suo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hiv41")
+
+[node name="walk_timer" type="Timer" parent="."]
