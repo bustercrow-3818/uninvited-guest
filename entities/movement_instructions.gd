@@ -19,6 +19,15 @@ var current_state := states.IDLE
 
 
 
+func initializ() -> void:
+	
+	pass
+	
+	
+func connect_signals() -> void:
+	
+	pass
+
 func _physics_process(_delta: float) -> void:
 	process_state()
 	

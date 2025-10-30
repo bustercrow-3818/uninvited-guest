@@ -29,18 +29,6 @@ func _physics_process(_delta: float) -> void:
 	velocity = move_instructions.get_velocity()
 	move_and_slide()
 
-func float_on() -> void:
-	if current_state != states.DASHING:
-		direction = Input.get_vector("left", "right", "up", "down").normalized()
-		current_state = states.FLOATING
-		velocity.x = direction.x * move_speed
-		if direction.y != 0:
-			velocity.y = direction.y * move_speed
-		else:
-			fall()
-	else:
-		pass
-
 func connect_signals() -> void:
 	pass
 

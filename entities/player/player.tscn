@@ -84,9 +84,6 @@ script = ExtResource("1_abrql")
 dash_speed = 800.0
 dash_time = 0.12
 sprite = NodePath("AnimatedSprite2D")
-move_speed = 40.0
-gravity = 1.0
-terminal_velocity = 30.0
 move_instructions = NodePath("player_movement")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
