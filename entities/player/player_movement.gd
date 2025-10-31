@@ -1,10 +1,13 @@
 extends MovementInstructions
 class_name PlayerMovement
 
-@export var dash_speed: float
-@export var dash_time: float
 
+@export_category("Dash Stats")
+@export var speed: float
+@export var time: float
+@export var cooldown_time: float
 
+var cooling: bool = false
 
 func move() -> void:
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
@@ -16,11 +19,18 @@ func move() -> void:
 		fall()
 
 func dash(_delta: float) -> void:
-	velocity = direction * dash_speed
-	await get_tree().create_timer(dash_time).timeout
+	if cooling == false:
+		velocity = direction * speed
+		await get_tree().create_timer(time).timeout
+		cooling = true
+		cooldown()
 	
 	current_state = states.IDLE
 	velocity = direction * move_speed
+
+func cooldown() -> void:
+	await get_tree().create_timer(cooldown_time).timeout
+	cooling = false
 
 func process_state() -> void:
 	if Input.is_action_just_pressed("dash"):
@@ -28,4 +38,4 @@ func process_state() -> void:
 	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.DASHING:
 		current_state = states.MOVING
 	elif current_state != states.DASHING:
-		current_state = states.IDLE
+		current_state = states.STOPPING

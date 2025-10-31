@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6by0hr2yqoun"]
+[gd_scene load_steps=8 format=3 uid="uid://b6by0hr2yqoun"]
 
 [ext_resource type="Script" uid="uid://dp3vx4bhsowe1" path="res://entities/npc/npc.gd" id="1_e3lg2"]
 [ext_resource type="Texture2D" uid="uid://clm43k8aygw46" path="res://assets/icon.svg" id="2_7bf1a"]
 [ext_resource type="Script" uid="uid://c0ck0sdchwws4" path="res://entities/npc/npc_movement.gd" id="3_7bf1a"]
+[ext_resource type="Script" uid="uid://chm1g45n64u0" path="res://entities/npc/possessed_movement.gd" id="4_wfxk4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfxk4"]
 atlas = ExtResource("2_7bf1a")
@@ -42,8 +43,24 @@ script = ExtResource("3_7bf1a")
 timer = NodePath("walk_timer")
 walk_interval = Vector2(1, 2)
 move_speed = 60.0
+decel = 2.0
 gravity = 2.0
 terminal_velocity = 300.0
 metadata/_custom_type_script = "uid://c0ck0sdchwws4"
 
 [node name="walk_timer" type="Timer" parent="NPCMovement"]
+
+[node name="PossessedMovement" type="Node" parent="."]
+script = ExtResource("4_wfxk4")
+move_speed = 90.0
+decel = 3.0
+gravity = 2.0
+terminal_velocity = 300.0
+metadata/_custom_type_script = "uid://chm1g45n64u0"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 96.0
+offset_top = -32.0
+offset_right = 136.0
+offset_bottom = -9.0
+text = "test"
