@@ -22,13 +22,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hiv41"]
 size = Vector2(128, 128)
 
-[node name="npc" type="CharacterBody2D" node_paths=PackedStringArray("walk_timer", "move_instructions")]
+[node name="npc" type="CharacterBody2D" node_paths=PackedStringArray("move_instructions")]
 scale = Vector2(0.25, 0.25)
 collision_layer = 3
 collision_mask = 3
+platform_floor_layers = 4294967040
 script = ExtResource("1_e3lg2")
-walk_timer = NodePath("NPCMovement/walk_timer")
-walk_timer_interval = Vector2(1, 2)
 move_instructions = NodePath("NPCMovement")
 metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 
@@ -42,6 +41,9 @@ shape = SubResource("RectangleShape2D_hiv41")
 script = ExtResource("3_7bf1a")
 timer = NodePath("walk_timer")
 walk_interval = Vector2(1, 2)
+move_speed = 60.0
+gravity = 2.0
+terminal_velocity = 300.0
 metadata/_custom_type_script = "uid://c0ck0sdchwws4"
 
 [node name="walk_timer" type="Timer" parent="NPCMovement"]

@@ -22,4 +22,4 @@ position = Vector2(0, -32)
 motion_mode = 0
 
 [node name="npc" parent="." instance=ExtResource("2_58nl1")]
-position = Vector2(-40, -40)
+position = Vector2(-40, -104)

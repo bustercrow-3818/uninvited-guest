@@ -12,7 +12,8 @@ var velocity: Vector2 = Vector2.ZERO
 enum states {
 	IDLE,
 	DASHING,
-	MOVING
+	MOVING,
+	VOID
 }
 
 var current_state := states.IDLE
@@ -48,7 +49,7 @@ func get_state() -> states:
 func slow() -> void:
 	if velocity.x != 0:
 		velocity.x = move_toward(velocity.x, 0, gravity)
-	fall()
+	#fall()
 
 func fall() -> void:
 	velocity.y = move_toward(velocity.y, terminal_velocity, gravity)
