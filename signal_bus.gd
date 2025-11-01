@@ -6,3 +6,6 @@ signal broadcast_bounds(bounds: Vector2)
 
 signal possessed(victim: Node, mode: String)
 signal release(victim: Node, mode: String)
+
+signal turn_on_blocker(target: Node)
+signal turn_off_blocker(target: Node)

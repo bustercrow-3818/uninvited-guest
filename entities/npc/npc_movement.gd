@@ -10,18 +10,16 @@ func _ready() -> void:
 	initialize()
 
 func move() -> void:
-	if active == false:
-		return
-	
-	moving = true
-	direction.x = randi_range(-1, 1)
-	velocity.x = direction.x * move_speed
-	if velocity.x != 0:
-		sprite.play("walk")
-	await get_tree().create_timer(randf_range(3, 4)).timeout
-	moving = false
-	sprite.play("idle")
-	restart_timer()
+	if active == true:
+		moving = true
+		direction.x = randi_range(-1, 1)
+		velocity.x = direction.x * move_speed
+		if velocity.x != 0:
+			sprite.play("walk")
+		await get_tree().create_timer(randf_range(3, 4)).timeout
+		moving = false
+		sprite.play("idle")
+		restart_timer()
 
 func process_state() -> void:
 	if velocity.x > 0:

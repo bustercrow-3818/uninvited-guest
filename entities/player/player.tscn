@@ -75,8 +75,8 @@ radius = 8.0
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "move_instructions")]
 modulate = Color(1, 1, 1, 0.7529412)
 z_index = 1
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 motion_mode = 1
 platform_on_leave = 2
 platform_floor_layers = 4294967040

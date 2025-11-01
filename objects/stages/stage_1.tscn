@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dxq7pf82vylv"]
+[gd_scene load_steps=23 format=4 uid="uid://dxq7pf82vylv"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_dc27i"]
 [ext_resource type="Script" uid="uid://c0pg6113u4hsb" path="res://objects/stages/stage_template.gd" id="2_2kvq2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dp0naiawibuud" path="res://assets/Graveyard [16x16]/Tiles/Back_Tiles.png" id="7_11vpy"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="9_knejt"]
 [ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="10_b1742"]
+[ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker.tscn" id="11_pgeck"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
 texture = ExtResource("1_dc27i")
@@ -940,3 +941,10 @@ shape = SubResource("WorldBoundaryShape2D_b1742")
 position = Vector2(1184, 256)
 rotation = 4.712389
 shape = SubResource("WorldBoundaryShape2D_b1742")
+
+[node name="ghost_blocker" parent="." instance=ExtResource("11_pgeck")]
+position = Vector2(512, 640)
+active = true
+
+[node name="ghost_blocker2" parent="." instance=ExtResource("11_pgeck")]
+position = Vector2(256, 640)

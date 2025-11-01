@@ -11,9 +11,13 @@ func move() -> void:
 	velocity.x = direction.x * move_speed
 	if parent_on_floor == true:
 		sprite.play("walk")
+	else:
+		pass
 	
 func process_state() -> void:
-	on_floor_check()
+	if on_floor_check() == true:
+		current_action_charges = max_action_charges
+		velocity.y = 0
 	
 	if velocity.x > 0:
 		sprite.flip_h = false
@@ -26,7 +30,7 @@ func process_state() -> void:
 		current_state = states.MOVING
 	elif velocity.x != 0:
 		current_state = states.STOPPING
-	else:
+	elif on_floor_check() == true and velocity.x == 0:
 		current_state = states.IDLE
 	
 func initialize() -> void:
@@ -37,14 +41,8 @@ func connect_signals() -> void:
 	pass
 	
 func action(_delta) -> void:
-	if active == false:
-		return
-	
-	if current_action_charges > 0:
+	if active == true and current_action_charges > 0:
 		sprite.play("jump")
 		velocity.y -= jump_speed
 		current_action_charges -= 1
-
-func on_floor_check() -> void:
-	if parent_on_floor == true:
-		current_action_charges = max_action_charges
+		current_state = states.FALLING

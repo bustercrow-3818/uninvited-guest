@@ -186,9 +186,8 @@ script = ExtResource("4_wfxk4")
 jump_speed = 200.0
 move_speed = 90.0
 decel = 5.0
-gravity = 5.0
-terminal_velocity = 300.0
-max_action_charges = 2
+gravity = 7.5
+terminal_velocity = 400.0
 sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://chm1g45n64u0"
 

@@ -50,19 +50,24 @@ func possess_target() -> void:
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
 
 func switch_pov(target: Node) -> void:
+	var tween = create_tween()
+	
 	camera.reparent(target)
-	hide()
+	tween.tween_property(camera, "position", Vector2.ZERO, 0.15)
+	camera.position = Vector2.ZERO
+	modulate = Color(1, 1, 1, 0.5)
 	collision_shape.disabled = true
 	possessing = true
 	SignalBus.possessed.emit(target, "PossessedMovement")
 
 func release_victim() -> void:
 	var victim: Node = camera.get_parent()
+	var tween = create_tween()
 	
 	victim.modulate = Color(1, 1, 1, 1)
-	position = victim.position + Vector2(0, -32)
 	possessing = false
-	show()
+	modulate = Color(1, 1, 1, 0.75)
 	collision_shape.disabled = false
 	camera.reparent(self)
+	tween.tween_property(camera, "position", Vector2.ZERO, 0.15)
 	SignalBus.release.emit(victim, "NPCMovement")

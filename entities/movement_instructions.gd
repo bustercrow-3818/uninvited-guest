@@ -42,10 +42,8 @@ func connect_signals() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if active == true:
-		on_floor_check()
 		fall()
 		process_state()
-		
 		
 		match current_state:
 			states.ACTION:
@@ -69,11 +67,10 @@ func get_state_name() -> String:
 func slow() -> void:
 	if velocity.x != 0:
 		velocity.x = move_toward(velocity.x, 0, decel)
-	if velocity.x == 0:
-		current_state = states.IDLE
 
 func fall() -> void:
-	velocity.y = move_toward(velocity.y, terminal_velocity, gravity)
+	velocity.y += gravity
+	clamp(velocity.y, 0, terminal_velocity)
 
 func idle() -> void:
 	sprite.play("idle")
@@ -84,13 +81,16 @@ func action(_delta: float) -> void:
 func restore_action_charges() -> void:
 	pass
 
-func on_floor_check() -> void:
+func on_floor_check() -> bool:
 	var parent: CharacterBody2D = get_parent()
+	var check: bool
 	
-	if parent.is_on_floor():
-		parent_on_floor = true
-	else:
-		parent_on_floor = false
+	if parent.is_on_floor() == true:
+		check = true
+	elif parent.is_on_floor() == false:
+		check = false
+		
+	return check
 
 @abstract func move() -> void
 
