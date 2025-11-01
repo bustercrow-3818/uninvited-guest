@@ -3,6 +3,7 @@ class_name Player
 
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
+@export var collision_shape: CollisionShape2D
 
 var possessing: bool = false
 
@@ -42,7 +43,7 @@ func set_cam_bounds(bounds: Vector2) -> void:
 
 func possess_target() -> void:
 	var state = move_instructions.get_state()
-	if move_and_slide() == true and state == move_instructions.states.DASHING:
+	if move_and_slide() == true and state == move_instructions.states.ACTION:
 		var collision = get_last_slide_collision().get_collider()
 		if collision is Entity:
 			switch_pov(collision)
@@ -51,6 +52,7 @@ func possess_target() -> void:
 func switch_pov(target: Node) -> void:
 	camera.reparent(target)
 	hide()
+	collision_shape.disabled = true
 	possessing = true
 	SignalBus.possessed.emit(target, "PossessedMovement")
 
@@ -61,5 +63,6 @@ func release_victim() -> void:
 	position = victim.position + Vector2(0, -32)
 	possessing = false
 	show()
+	collision_shape.disabled = false
 	camera.reparent(self)
 	SignalBus.release.emit(victim, "NPCMovement")

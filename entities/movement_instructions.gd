@@ -8,22 +8,30 @@ class_name MovementInstructions
 @export var gravity: float
 @export var terminal_velocity: float
 
+@export_category("Other Stats")
+@export var max_action_charges: int = 1
+@export var sprite: AnimatedSprite2D
+
+var parent_on_floor: bool = true
 var direction: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
+var active: bool = false
+var current_action_charges: int = 1
 
 enum states {
 	IDLE,
-	DASHING,
+	ACTION,
 	MOVING,
 	VOID,
-	STOPPING
+	STOPPING,
+	FALLING
 }
 
 var current_state := states.IDLE
 
 
 
-func initializ() -> void:
+func initialize() -> void:
 	
 	pass
 	
@@ -33,18 +41,21 @@ func connect_signals() -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
-	fall()
-	process_state()
-	
-	match current_state:
-		states.DASHING:
-			dash(_delta)
-		states.MOVING:
-			move()
-		states.STOPPING:
-			slow()
-		states.IDLE:
-			idle()
+	if active == true:
+		on_floor_check()
+		fall()
+		process_state()
+		
+		
+		match current_state:
+			states.ACTION:
+				action(_delta)
+			states.MOVING:
+				move()
+			states.STOPPING:
+				slow()
+			states.IDLE:
+				idle()
 
 func get_velocity() -> Vector2:
 	return velocity
@@ -65,10 +76,21 @@ func fall() -> void:
 	velocity.y = move_toward(velocity.y, terminal_velocity, gravity)
 
 func idle() -> void:
-	direction = Vector2.ZERO
+	sprite.play("idle")
 
-func dash(_delta: float) -> void:
+func action(_delta: float) -> void:
 	pass
+
+func restore_action_charges() -> void:
+	pass
+
+func on_floor_check() -> void:
+	var parent: CharacterBody2D = get_parent()
+	
+	if parent.is_on_floor():
+		parent_on_floor = true
+	else:
+		parent_on_floor = false
 
 @abstract func move() -> void
 

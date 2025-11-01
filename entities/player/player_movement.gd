@@ -9,6 +9,12 @@ class_name PlayerMovement
 
 var cooling: bool = false
 
+func _ready() -> void:
+	initialize()
+
+func initialize() -> void:
+	active = true
+
 func move() -> void:
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	current_state = states.MOVING
@@ -18,7 +24,7 @@ func move() -> void:
 	else:
 		fall()
 
-func dash(_delta: float) -> void:
+func action(_delta: float) -> void:
 	if cooling == false:
 		velocity = direction * speed
 		await get_tree().create_timer(time).timeout
@@ -33,9 +39,9 @@ func cooldown() -> void:
 	cooling = false
 
 func process_state() -> void:
-	if Input.is_action_just_pressed("dash"):
-		current_state = states.DASHING
-	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.DASHING:
+	if Input.is_action_just_pressed("action"):
+		current_state = states.ACTION
+	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.ACTION:
 		current_state = states.MOVING
-	elif current_state != states.DASHING:
+	elif current_state != states.ACTION:
 		current_state = states.STOPPING
