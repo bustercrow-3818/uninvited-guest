@@ -6,6 +6,9 @@ class_name Entity
 
 var direction: Vector2
 
+func get_move_instruction() -> MovementInstructions:
+	return move_instructions
+
 @abstract func connect_signals() -> void
 	
 @abstract func initialize() -> void

@@ -1,10 +1,10 @@
 [gd_scene load_steps=26 format=3 uid="uid://b6by0hr2yqoun"]
 
 [ext_resource type="Script" uid="uid://dp3vx4bhsowe1" path="res://entities/npc/npc.gd" id="1_e3lg2"]
-[ext_resource type="Texture2D" uid="uid://bxa3xwwhq4yg6" path="res://assets/Hana Caraka - Base Character [sample]/Hana Caraka - Base Character [sample]/idle.png" id="2_y6suo"]
+[ext_resource type="Texture2D" uid="uid://vuftw377g1nk" path="res://assets/npc/npc/idle.png" id="2_y6suo"]
 [ext_resource type="Script" uid="uid://c0ck0sdchwws4" path="res://entities/npc/npc_movement.gd" id="3_7bf1a"]
-[ext_resource type="Texture2D" uid="uid://b52i7cn77hbgt" path="res://assets/Hana Caraka - Base Character [sample]/Hana Caraka - Base Character [sample]/jump.png" id="3_57jtd"]
-[ext_resource type="Texture2D" uid="uid://c78kaif6no553" path="res://assets/Hana Caraka - Base Character [sample]/Hana Caraka - Base Character [sample]/run.png" id="3_hiv41"]
+[ext_resource type="Texture2D" uid="uid://cdo7x4s4dpcyb" path="res://assets/npc/npc/jump.png" id="3_57jtd"]
+[ext_resource type="Texture2D" uid="uid://lvu66dahbge4" path="res://assets/npc/npc/run.png" id="3_hiv41"]
 [ext_resource type="Script" uid="uid://chm1g45n64u0" path="res://entities/npc/possessed_movement.gd" id="4_wfxk4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57jtd"]
@@ -158,6 +158,7 @@ move_instructions = NodePath("NPCMovement")
 metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_js3qf")
 animation = &"idle"
@@ -192,6 +193,7 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://chm1g45n64u0"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 96.0
 offset_top = -32.0
 offset_right = 136.0

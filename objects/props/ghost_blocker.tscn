@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d06cy40x0ormd"]
 
 [ext_resource type="Script" uid="uid://bbo6lcq6vfxs4" path="res://ghost_blocker.gd" id="1_isaf1"]
-[ext_resource type="Texture2D" uid="uid://bmwodfi1k7tha" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="2_fn61t"]
+[ext_resource type="Texture2D" uid="uid://djhy8483dsuno" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="2_fn61t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isaf1"]
 atlas = ExtResource("2_fn61t")
@@ -11,7 +11,7 @@ region = Rect2(0, 97, 16, 15)
 atlas = ExtResource("2_fn61t")
 region = Rect2(0, 81, 16, 15)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_x2u7e"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wngdh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -45,9 +45,8 @@ sprite = NodePath("AnimatedSprite2D")
 modulate = Color(1, 1, 1, 0.78431374)
 position = Vector2(0, -16)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_x2u7e")
+sprite_frames = SubResource("SpriteFrames_wngdh")
 animation = &"active"
-autoplay = "inactive"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_isaf1")

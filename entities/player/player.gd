@@ -1,6 +1,8 @@
 extends Entity
 class_name Player
 
+@onready var label: Label = $status
+
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
 @export var collision_shape: CollisionShape2D
@@ -28,6 +30,7 @@ func _physics_process(_delta: float) -> void:
 
 func connect_signals() -> void:
 	SignalBus.broadcast_bounds.connect(set_cam_bounds)
+	SignalBus.lay_to_rest.connect(lay_to_rest)
 
 func initialize() -> void:
 	SignalBus.request_bounds.emit()
@@ -55,7 +58,7 @@ func switch_pov(target: Node) -> void:
 	camera.reparent(target)
 	tween.tween_property(camera, "position", Vector2.ZERO, 0.15)
 	camera.position = Vector2.ZERO
-	modulate = Color(1, 1, 1, 0.5)
+	modulate = Color(.85, .35, .07, 0.5)
 	collision_shape.disabled = true
 	possessing = true
 	SignalBus.possessed.emit(target, "PossessedMovement")
@@ -71,3 +74,8 @@ func release_victim() -> void:
 	camera.reparent(self)
 	tween.tween_property(camera, "position", Vector2.ZERO, 0.15)
 	SignalBus.release.emit(victim, "NPCMovement")
+
+func lay_to_rest(body: Node) -> void:
+	if body == self:
+		label.text = "victory"
+	pass

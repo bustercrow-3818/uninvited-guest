@@ -66,11 +66,12 @@ func get_state_name() -> String:
 
 func slow() -> void:
 	if velocity.x != 0:
-		velocity.x = move_toward(velocity.x, 0, decel)
+		velocity.x -= decel * direction.x
 
 func fall() -> void:
 	velocity.y += gravity
-	clamp(velocity.y, 0, terminal_velocity)
+	if velocity.y > terminal_velocity:
+		velocity.y = terminal_velocity
 
 func idle() -> void:
 	sprite.play("idle")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3m04gont7f1n"]
+
+[ext_resource type="Texture2D" uid="uid://djhy8483dsuno" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="1_wcy2s"]
+[ext_resource type="Script" uid="uid://1y20kbw78ii0" path="res://objects/interactables/grave.gd" id="2_bobte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bobte"]
+atlas = ExtResource("1_wcy2s")
+region = Rect2(64, 18, 16, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wcy2s"]
+
+[node name="grave" type="Sprite2D" node_paths=PackedStringArray("detection")]
+position = Vector2(1, -21)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_bobte")
+script = ExtResource("2_bobte")
+detection = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wcy2s")

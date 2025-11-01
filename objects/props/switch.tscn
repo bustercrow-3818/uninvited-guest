@@ -1,10 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://bumq0usmd6ary"]
+[gd_scene load_steps=7 format=3 uid="uid://bumq0usmd6ary"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2u3qv"]
+[ext_resource type="Texture2D" uid="uid://dam4sbt6kfrgy" path="res://assets/Medieval_props_free.png" id="1_1483w"]
+[ext_resource type="Script" uid="uid://obk5jh0wme04" path="res://objects/props/switch.gd" id="1_loeb2"]
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_loeb2"]
+radius = 16.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2u3qv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kllgg"]
+atlas = ExtResource("1_1483w")
+region = Rect2(34, 96, 29, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njds1"]
+atlas = ExtResource("1_1483w")
+region = Rect2(76, 104, 39, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1483w"]
+size = Vector2(48, 38)
+
+[node name="lever" type="StaticBody2D" node_paths=PackedStringArray("area", "on", "off")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_loeb2")
+area = NodePath("detection")
+on = NodePath("on")
+off = NodePath("off")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_loeb2")
+
+[node name="on" type="Sprite2D" parent="."]
+position = Vector2(0, -19)
+texture = SubResource("AtlasTexture_kllgg")
+
+[node name="off" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-5, -15)
+texture = SubResource("AtlasTexture_njds1")
+
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_1483w")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cc73q1ensdj1b"]
 
 [ext_resource type="Script" uid="uid://bnelc3bixqywx" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://cmjifxdyu4v4u" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://di0ukvlqq26d8" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://bbjnctfd74jt1" path="res://entities/player/player_movement.tscn" id="3_sglur"]
 [ext_resource type="Script" uid="uid://c42bjnljdtwcj" path="res://entities/player/player_movement.gd" id="4_bls4j"]
 
@@ -74,11 +74,9 @@ radius = 8.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "move_instructions")]
 modulate = Color(1, 1, 1, 0.7529412)
-z_index = 1
+z_index = 2
 collision_layer = 6
 collision_mask = 6
-motion_mode = 1
-platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_abrql")
 sprite = NodePath("AnimatedSprite2D")
@@ -99,6 +97,7 @@ shape = SubResource("CircleShape2D_symyc")
 zoom = Vector2(2, 2)
 
 [node name="status" type="Label" parent="."]
+visible = false
 offset_left = -8.0
 offset_top = -24.0
 offset_right = 32.0
@@ -114,5 +113,5 @@ cooldown_time = 1.0
 move_speed = 40.0
 decel = 1.0
 gravity = 1.0
-terminal_velocity = 30.0
+terminal_velocity = 15.0
 sprite = NodePath("../AnimatedSprite2D")

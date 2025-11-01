@@ -15,14 +15,14 @@ func activate(body: Node2D) -> void:
 	
 func deactivate(body: Node2D) -> void:
 	if body == self:
-		blocker.disabled = true
+		blocker.call_deferred("set_disabled", true)
 		sprite.play("inactive")
 
 func initialize() -> void:
 	if active == true:
 		activate(self)
 	else:
-		deactivate(self)
+		call_deferred("deactivate", self)
 	connect_signals()
 	
 func connect_signals() -> void:
