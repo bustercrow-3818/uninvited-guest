@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d06cy40x0ormd"]
 
-[ext_resource type="Script" uid="uid://bbo6lcq6vfxs4" path="res://ghost_blocker.gd" id="1_isaf1"]
-[ext_resource type="Texture2D" uid="uid://djhy8483dsuno" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="2_fn61t"]
+[ext_resource type="Script" uid="uid://bbo6lcq6vfxs4" path="res://objects/props/ghost_blocker.gd" id="1_isaf1"]
+[ext_resource type="Texture2D" uid="uid://bmwodfi1k7tha" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="2_fn61t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isaf1"]
 atlas = ExtResource("2_fn61t")
@@ -34,11 +34,10 @@ animations = [{
 a = Vector2(0, -5000)
 b = Vector2(0, 5000)
 
-[node name="ghost_blocker" type="StaticBody2D" node_paths=PackedStringArray("blocker", "sprite")]
+[node name="ghost_blocker" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_isaf1")
-blocker = NodePath("CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

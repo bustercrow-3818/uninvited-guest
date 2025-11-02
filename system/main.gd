@@ -1,5 +1,9 @@
 extends Node2D
 
+@export_category("Misc.")
+@export var starting_stage: int
+
+@export_category("Data")
 @export var player: PackedScene
 @export var stages: Dictionary[int, PackedScene]
 
@@ -13,7 +17,7 @@ func _ready() -> void:
 func initialize() -> void:
 	connect_signals()
 	spawn_player()
-	load_stage(0)
+	load_stage(starting_stage)
 	
 func connect_signals() -> void:
 	SignalBus.lay_to_rest.connect(stage_transition)

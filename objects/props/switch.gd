@@ -13,16 +13,17 @@ func initialize() -> void:
 	connect_signals()
 	
 func connect_signals() -> void:
-	area.body_entered.connect(turn_off)
+	area.body_entered.connect(toggle)
 
-func turn_off(body: Node) -> void:
-	var check: NPC
-	if body is NPC:
-		check = body
-	else:
+func toggle(body: Node) -> void:
+	if body is not Entity:
 		return
-	
-	if check.get_move_instruction() is PossessedMovement:
+		
+	if body.get_move_instruction() is PossessedMovement and body is NPC:
 		SignalBus.turn_off_blocker.emit(controlled_barrier)
 		on.hide()
 		off.show()
+	elif body is Player:
+		SignalBus.turn_on_blocker.emit(controlled_barrier)
+		on.show()
+		off.hide()

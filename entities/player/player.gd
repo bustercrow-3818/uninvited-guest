@@ -60,7 +60,7 @@ func switch_pov(target: Node) -> void:
 	var tween = create_tween()
 	
 	camera.reparent(target)
-	tween.tween_property(camera, "position", Vector2.ZERO, 0.25)
+	tween.tween_property(camera, "position", Vector2.ZERO, 0.5)
 	camera.position = Vector2.ZERO
 	modulate = Color(.85, .35, .07, 0.5)
 	collision_shape.disabled = true

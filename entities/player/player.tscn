@@ -1,9 +1,9 @@
 [gd_scene load_steps=21 format=3 uid="uid://cc73q1ensdj1b"]
 
 [ext_resource type="Script" uid="uid://bnelc3bixqywx" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://di0ukvlqq26d8" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://cmjifxdyu4v4u" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://bbjnctfd74jt1" path="res://entities/player/player_movement.tscn" id="3_sglur"]
-[ext_resource type="Texture2D" uid="uid://wlpk5hj7gx7c" path="res://assets/BlueSpirit/blueflameattack.png" id="4_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://vs4ao0kiflrk" path="res://assets/BlueSpirit/blueflameattack.png" id="4_8fjmc"]
 [ext_resource type="Script" uid="uid://c42bjnljdtwcj" path="res://entities/player/player_movement.gd" id="4_bls4j"]
 [ext_resource type="Theme" uid="uid://dwv5n83my5e74" path="res://system/themes/tutorial.tres" id="4_qiwj3"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bumq0usmd6ary"]
 
-[ext_resource type="Texture2D" uid="uid://dam4sbt6kfrgy" path="res://assets/Medieval_props_free.png" id="1_1483w"]
+[ext_resource type="Texture2D" uid="uid://dyufcun1hlxs2" path="res://assets/Medieval_props_free.png" id="1_1483w"]
 [ext_resource type="Script" uid="uid://obk5jh0wme04" path="res://objects/props/switch.gd" id="1_loeb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_loeb2"]
@@ -40,6 +40,8 @@ position = Vector2(-5, -15)
 texture = SubResource("AtlasTexture_njds1")
 
 [node name="detection" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
 position = Vector2(0, -19)

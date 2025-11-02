@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=8 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
 [ext_resource type="PackedScene" uid="uid://14emrqq6kseh" path="res://objects/stages/tutorial.tscn" id="3_goxoi"]
 [ext_resource type="PackedScene" uid="uid://dxq7pf82vylv" path="res://objects/stages/stage_1.tscn" id="4_goxoi"]
 [ext_resource type="PackedScene" uid="uid://7i11aqy73p1" path="res://objects/stages/stage_2.tscn" id="5_tuma4"]
+[ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/stage_3.tscn" id="6_kmnl7"]
+[ext_resource type="PackedScene" uid="uid://bmbtkqcwedku7" path="res://objects/stages/stage_4.tscn" id="7_0hq6h"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_7am6p")
@@ -12,5 +14,7 @@ player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("3_goxoi"),
 1: ExtResource("4_goxoi"),
-2: ExtResource("5_tuma4")
+2: ExtResource("5_tuma4"),
+3: ExtResource("6_kmnl7"),
+4: ExtResource("7_0hq6h")
 })
