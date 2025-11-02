@@ -112,7 +112,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -161,9 +161,8 @@ metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 z_index = 1
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_js3qf")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.76802236
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -20)
@@ -181,10 +180,11 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c0ck0sdchwws4"
 
 [node name="walk_timer" type="Timer" parent="NPCMovement"]
+autostart = true
 
 [node name="PossessedMovement" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_wfxk4")
-jump_speed = 200.0
+jump_speed = 225.0
 move_speed = 90.0
 decel = 5.0
 gravity = 7.5

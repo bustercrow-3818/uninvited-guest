@@ -11,12 +11,18 @@ config_version=5
 [application]
 
 config/name="uninvited guest"
+run/main_scene="uid://c74toopt14kld"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [autoload]
 
 SignalBus="*res://signal_bus.gd"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=768
 
 [input]
 

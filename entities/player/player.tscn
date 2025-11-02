@@ -1,9 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://cc73q1ensdj1b"]
+[gd_scene load_steps=20 format=3 uid="uid://cc73q1ensdj1b"]
 
 [ext_resource type="Script" uid="uid://bnelc3bixqywx" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://di0ukvlqq26d8" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://bbjnctfd74jt1" path="res://entities/player/player_movement.tscn" id="3_sglur"]
+[ext_resource type="Texture2D" uid="uid://wlpk5hj7gx7c" path="res://assets/BlueSpirit/blueflameattack.png" id="4_8fjmc"]
 [ext_resource type="Script" uid="uid://c42bjnljdtwcj" path="res://entities/player/player_movement.gd" id="4_bls4j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx6sm"]
+atlas = ExtResource("4_8fjmc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqrof"]
+atlas = ExtResource("4_8fjmc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wlsy"]
+atlas = ExtResource("4_8fjmc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2kln"]
+atlas = ExtResource("4_8fjmc")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
 atlas = ExtResource("1_symyc")
@@ -39,6 +56,23 @@ region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wvtmh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx6sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqrof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wlsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2kln")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_abrql")
@@ -86,9 +120,10 @@ move_instructions = NodePath("player_movement")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvtmh")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
-frame_progress = 0.8744548
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_symyc")
@@ -103,12 +138,12 @@ offset_top = -24.0
 offset_right = 32.0
 offset_bottom = -1.0
 scale = Vector2(0.5, 0.5)
-text = "test"
+text = "R.I.P"
 
 [node name="player_movement" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_sglur")]
 script = ExtResource("4_bls4j")
-speed = 500.0
-time = 0.15
+speed = 325.0
+time = 0.25
 cooldown_time = 1.0
 move_speed = 40.0
 decel = 1.0

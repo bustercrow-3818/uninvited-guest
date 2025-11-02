@@ -3,8 +3,6 @@ class_name Grave
 
 @export var detection: Area2D
 
-func _ready() -> void:
-	initialize()
 
 func initialize() -> void:
 	connect_signals()

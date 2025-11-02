@@ -5,12 +5,12 @@ extends StaticBody2D
 
 @export var active: bool = false
 
-func _ready() -> void:
-	initialize()
+#func _ready() -> void:
+	#initialize()
 
 func activate(body: Node2D) -> void:
 	if body == self:
-		blocker.disabled = false
+		blocker.call_deferred("set_disabled", false)
 		sprite.play("active")
 	
 func deactivate(body: Node2D) -> void:

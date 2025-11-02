@@ -9,9 +9,6 @@ extends StaticBody2D
 @export var on: Sprite2D
 @export var off: Sprite2D
 
-func _ready() -> void:
-	initialize()
-
 func initialize() -> void:
 	connect_signals()
 	

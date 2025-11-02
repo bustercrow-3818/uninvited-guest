@@ -3,16 +3,13 @@ class_name PossessedMovement
 
 @export var jump_speed: float
 
-func _ready() -> void:
-	initialize()
-
 func move() -> void:
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity.x = direction.x * move_speed
-	if parent_on_floor == true:
-		sprite.play("walk")
-	else:
+	if on_floor_check() == false:
 		pass
+	else:
+		sprite.play("walk")
 	
 func process_state() -> void:
 	if on_floor_check() == true:

@@ -7,8 +7,8 @@ class_name NPC
 
 var modes: Dictionary
 
-func _ready() -> void:
-	initialize()
+#func _ready() -> void:
+	#initialize()
 
 func _physics_process(_delta: float) -> void:
 	velocity = move_instructions.get_velocity()
@@ -22,7 +22,7 @@ func initialize() -> void:
 	for i in get_children():
 		if i is MovementInstructions:
 			modes[i.name] = i
-	
+	move_instructions.initialize()
 	move_instructions.active = true
 	connect_signals()
 
