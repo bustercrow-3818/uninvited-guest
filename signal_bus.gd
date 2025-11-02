@@ -13,3 +13,5 @@ signal turn_on_blocker(target: Node)
 signal turn_off_blocker(target: Node)
 
 signal lay_to_rest(body: Node)
+
+signal location_announce(location: Vector2)

@@ -54,6 +54,8 @@ func _physics_process(_delta: float) -> void:
 				slow()
 			states.IDLE:
 				idle()
+	else:
+		velocity = Vector2.ZERO
 
 func get_velocity() -> Vector2:
 	return velocity

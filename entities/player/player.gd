@@ -80,15 +80,13 @@ func release_victim() -> void:
 	SignalBus.release.emit(victim, "NPCMovement")
 
 func lay_to_rest() -> void:
-	var cam_tween = create_tween()
-	var player_tween = create_tween()
+	var tween = create_tween()
 	
 	move_instructions.active = false
-	cam_tween.tween_property(camera, "zoom", camera.zoom * 3, 6)
-	player_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 0), 6)
-	player_tween.parallel().tween_property(self, "scale", scale * 3, 6)
-	await player_tween.finished
+	sprite.hide()
+	velocity = Vector2.ZERO
 	label.show()
+	tween.tween_property(label, "modulate", Color(1, 1, 1, 1), 5)
 	
 
 func spawn(location: Vector2) -> void:

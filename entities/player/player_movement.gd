@@ -9,9 +9,6 @@ class_name PlayerMovement
 
 var cooling: bool = false
 
-#func _ready() -> void:
-	#initialize()
-
 func initialize() -> void:
 	active = true
 

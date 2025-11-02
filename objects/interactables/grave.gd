@@ -12,3 +12,4 @@ func connect_signals() -> void:
 
 func lay_to_rest(body: Node) -> void:
 	SignalBus.lay_to_rest.emit(body)
+	SignalBus.location_announce.emit(position)
