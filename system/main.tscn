@@ -1,20 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=10 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
-[ext_resource type="PackedScene" uid="uid://14emrqq6kseh" path="res://objects/stages/tutorial.tscn" id="3_goxoi"]
-[ext_resource type="PackedScene" uid="uid://dxq7pf82vylv" path="res://objects/stages/stage_1.tscn" id="4_goxoi"]
-[ext_resource type="PackedScene" uid="uid://7i11aqy73p1" path="res://objects/stages/stage_2.tscn" id="5_tuma4"]
-[ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/stage_3.tscn" id="6_kmnl7"]
+[ext_resource type="PackedScene" uid="uid://dw2t7ajy0i7a3" path="res://objects/stages/tutorial_3.tscn" id="5_tuma4"]
+[ext_resource type="PackedScene" uid="uid://bdbx8yk3ganuv" path="res://objects/stages/tutorial_4.tscn" id="6_kmnl7"]
 [ext_resource type="PackedScene" uid="uid://bmbtkqcwedku7" path="res://objects/stages/stage_4.tscn" id="7_0hq6h"]
+[ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/stage_3.tscn" id="7_2soig"]
+[ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/tutorial_1.tscn" id="7_7rmty"]
+[ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/tutorial_2.tscn" id="8_7rmty"]
+[ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer")]
 script = ExtResource("1_7am6p")
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
-0: ExtResource("3_goxoi"),
-1: ExtResource("4_goxoi"),
+0: ExtResource("7_7rmty"),
+1: ExtResource("8_7rmty"),
 2: ExtResource("5_tuma4"),
 3: ExtResource("6_kmnl7"),
-4: ExtResource("7_0hq6h")
+4: ExtResource("7_2soig"),
+5: ExtResource("7_0hq6h")
 })
+black_screen = NodePath("black")
+game_clock = NodePath("CanvasLayer/Label")
+timer = NodePath("Timer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme = ExtResource("9_2soig")
+text = "00:00:00"
+
+[node name="black" type="Polygon2D" parent="."]
+z_index = -1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-381, -285, 1032, -288, 1032, 768, -384, 768)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

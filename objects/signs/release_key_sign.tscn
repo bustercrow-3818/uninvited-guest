@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://da7ivxgpm6j6q"]
+
+[ext_resource type="Texture2D" uid="uid://xfd5r3qlv5c8" path="res://assets/input-prompts-1.1.1/input-prompts-1.1.1/256_png/pc/dark/key/alphanum/_/x.png" id="1_pkl1n"]
+[ext_resource type="Script" uid="uid://cjbnm0amcm2jw" path="res://objects/signs/release_key_sign.gd" id="2_11hfw"]
+
+[node name="release_key_sign" type="Sprite2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = -1
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_pkl1n")
+script = ExtResource("2_11hfw")

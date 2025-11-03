@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://14emrqq6kseh"]
+[gd_scene load_steps=29 format=4 uid="uid://14emrqq6kseh"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_1qjxp"]
 [ext_resource type="Script" uid="uid://c0pg6113u4hsb" path="res://objects/stages/stage_template.gd" id="2_j33yc"]
@@ -15,8 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b3m04gont7f1n" path="res://objects/interactables/grave.tscn" id="12_vi48y"]
 [ext_resource type="PackedScene" uid="uid://bfn1fcem84ils" path="res://objects/signs/movement_keys_sign.tscn" id="13_oi6h3"]
 [ext_resource type="PackedScene" uid="uid://ce2fn6gxtfn27" path="res://objects/signs/possession_key_sign.tscn" id="14_tdbmw"]
-[ext_resource type="Texture2D" uid="uid://xfd5r3qlv5c8" path="res://assets/input-prompts-1.1.1/input-prompts-1.1.1/256_png/pc/dark/key/alphanum/_/x.png" id="15_rphbh"]
-[ext_resource type="Script" uid="uid://cjbnm0amcm2jw" path="res://objects/signs/release_key_sign.gd" id="16_e37i8"]
+[ext_resource type="PackedScene" uid="uid://da7ivxgpm6j6q" path="res://objects/signs/release_key_sign.tscn" id="15_or6vt"]
 [ext_resource type="Script" uid="uid://c7mxqv8crfl5r" path="res://system/label.gd" id="18_nvlki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
@@ -949,14 +948,8 @@ position = Vector2(121, 457)
 z_index = -1
 position = Vector2(512, 457)
 
-[node name="release_key_sign" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.6862745)
-z_index = -1
+[node name="release_key_sign" parent="." instance=ExtResource("15_or6vt")]
 position = Vector2(688, 432)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("15_rphbh")
-script = ExtResource("16_e37i8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3

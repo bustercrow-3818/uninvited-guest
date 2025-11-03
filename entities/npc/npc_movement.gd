@@ -19,6 +19,8 @@ func move() -> void:
 		restart_timer()
 
 func process_state() -> void:
+	if get_parent().is_on_wall():
+		velocity.x *= -1
 	if velocity.x > 0:
 		sprite.flip_h = false
 	elif velocity.x < 0:
@@ -26,8 +28,6 @@ func process_state() -> void:
 		
 	if moving == false:
 		slow()
-	fall()
-
 	
 func restart_timer() -> void:
 	timer.start(randf_range(walk_interval.x, walk_interval.y))
