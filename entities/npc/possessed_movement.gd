@@ -3,15 +3,26 @@ class_name PossessedMovement
 
 @export var jump_speed: float
 
-func move() -> void:
-	direction = Input.get_vector("left", "right", "up", "down").normalized()
-	velocity.x = direction.x * move_speed
+func move(_delta: float) -> void:
+	direction = get_direction()
+	velocity.x = move_toward(velocity.x, move_speed * direction.x, accel)
+	
 	if on_floor_check() == false:
 		pass
 	else:
 		sprite.play("walk")
 	
+func get_direction() -> Vector2:
+	var _direction = Vector2.ZERO
+	
+	if (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")):
+		_direction = Input.get_vector("left", "right", "up", "down").normalized()
+	
+	return _direction
+	
 func process_state() -> void:
+	fall()
+	
 	if on_floor_check() == true:
 		current_action_charges = max_action_charges
 		velocity.y = 0
@@ -25,9 +36,7 @@ func process_state() -> void:
 		current_state = states.ACTION
 	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")):
 		current_state = states.MOVING
-	elif velocity.x != 0:
-		current_state = states.STOPPING
-	elif on_floor_check() == true and velocity.x == 0:
+	elif on_floor_check() == true and direction.x == 0:
 		current_state = states.IDLE
 	
 func initialize() -> void:

@@ -10,19 +10,18 @@ class_name PlayerMovement
 var cooling: bool = false
 
 func initialize() -> void:
+	velocity = Vector2.ZERO
 	active = true
 
-func move() -> void:
-	direction = Input.get_vector("left", "right", "up", "down").normalized()
-	current_state = states.MOVING
-	velocity.x = direction.x * move_speed
-	if direction.y != 0:
-		velocity.y = direction.y * move_speed
-	else:
-		fall()
+func move(_delta: float) -> void:
+	direction = get_direction()
+	if direction != Vector2.ZERO:
+		velocity = velocity.move_toward(direction * move_speed, accel)
 
 func action(_delta: float) -> void:
+	
 	if cooling == false:
+		direction = get_direction()
 		velocity = direction * speed
 		await get_tree().create_timer(time).timeout
 		cooling = true
@@ -41,4 +40,21 @@ func process_state() -> void:
 	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.ACTION:
 		current_state = states.MOVING
 	elif current_state != states.ACTION:
-		current_state = states.STOPPING
+		current_state = states.IDLE
+	
+
+func idle() -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, decel)
+	if velocity == Vector2.ZERO:
+		sprite.play("idle")
+
+func slow() -> void:
+	pass
+
+func get_direction() -> Vector2:
+	var _direction = Vector2.ZERO
+	
+	if (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")):
+		_direction = Input.get_vector("left", "right", "up", "down").normalized()
+	
+	return _direction

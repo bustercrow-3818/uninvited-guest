@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://fi5jgqobqjlq"]
+
+[ext_resource type="Script" uid="uid://bbo6lcq6vfxs4" path="res://objects/props/ghost_blocker/ghost_blocker.gd" id="1_og73c"]
+[ext_resource type="Texture2D" uid="uid://bmwodfi1k7tha" path="res://assets/Graveyard [16x16]/Props&Objects/Props.png" id="2_gnayf"]
+[ext_resource type="Texture2D" uid="uid://b0w6vb2jcwt32" path="res://objects/props/ghost_blocker/wall_textures/block_ghost.tres" id="2_vg6w1"]
+[ext_resource type="Texture2D" uid="uid://cfusbycupsmf6" path="res://objects/props/ghost_blocker/wall_textures/block_guy.tres" id="3_u3kfi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isaf1"]
+atlas = ExtResource("2_gnayf")
+region = Rect2(0, 97, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn61t"]
+atlas = ExtResource("2_gnayf")
+region = Rect2(0, 81, 16, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wngdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isaf1")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn61t")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_isaf1"]
+a = Vector2(-5000, 0)
+b = Vector2(5000, 0)
+
+[sub_resource type="Gradient" id="Gradient_t2iuq"]
+offsets = PackedFloat32Array(0, 0.06666667, 0.36666667)
+colors = PackedColorArray(0.50895643, 0.2514477, 0.110001765, 1, 0.17254902, 0.9098039, 0.9607843, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_og73c"]
+gradient = SubResource("Gradient_t2iuq")
+width = 8
+height = 400
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, -1)
+repeat = 2
+
+[node name="ghost_blocker_v" type="StaticBody2D" node_paths=PackedStringArray("sprite", "wall")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_og73c")
+sprite = NodePath("AnimatedSprite2D")
+wall = [NodePath("wall"), NodePath("wall/Sprite2D2")]
+blue_wall = ExtResource("2_vg6w1")
+red_wall = ExtResource("3_u3kfi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wngdh")
+animation = &"active"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("SegmentShape2D_isaf1")
+
+[node name="wall" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.19607843)
+z_index = -1
+position = Vector2(200, -8)
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_og73c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="wall"]
+position = Vector2(0, 400)
+rotation = 3.1415927
+texture = SubResource("GradientTexture2D_og73c")

@@ -10,6 +10,7 @@ class_name Player
 var possessing: bool = false
 
 func _physics_process(_delta: float) -> void:
+	label.text = str(move_instructions.get_direction())
 	if Input.is_action_just_pressed("release") and possessing == true:
 		release_victim()
 	
@@ -34,6 +35,7 @@ func connect_signals() -> void:
 	SignalBus.final_stage_end.connect(lay_to_rest)
 
 func initialize() -> void:
+	velocity = Vector2.ZERO
 	SignalBus.request_bounds.emit()
 	move_instructions.initialize()
 	connect_signals()

@@ -1,14 +1,12 @@
 extends Node2D
 
-@export_category("Misc.")
 @export var starting_stage: int
-
-@export_category("Data")
 @export var player: PackedScene
 @export var stages: Dictionary[int, PackedScene]
 @export var black_screen: Polygon2D
 @export var game_clock: Label
 @export var timer: Timer
+@export var restart_button: Button
 
 var player_reference: Player
 var current_stage: TileMapLayer
@@ -22,50 +20,69 @@ func _ready() -> void:
 
 func initialize() -> void:
 	connect_signals()
-	spawn_player()
-	load_stage(starting_stage)
+	load_stage(starting_stage, true)
 	
 func connect_signals() -> void:
 	SignalBus.lay_to_rest.connect(stage_transition)
+	restart_button.pressed.connect(restart_stage)
 	timer.timeout.connect(increment_time)
 	
 func spawn_player() -> void:
 	var new_player: Player
 	
+	if player_reference != null:
+		player_reference.queue_free()
+	
 	new_player = player.instantiate()
-	add_child(new_player)
+	
+	call_deferred("add_child", new_player)
 	player_reference = new_player
 	player_reference.initialize()
 
-func load_stage(next_stage: int) -> void:
+func load_stage(next_stage: int, initial: bool = false) -> void:
 	var new_stage: Stage = stages[next_stage].instantiate()
 	
+	if initial == false:
+		fade_out()
+		await get_tree().create_timer(0.75).timeout
+	else:
+		pass
+	
+	spawn_player()
+	
 	if current_stage != null:
-		var tween = create_tween()
-		tween.tween_property(current_stage, "modulate", Color(1,1,1,0), 0.25)
-		tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,0), 0.25)
-		
-		await tween.finished
 		current_stage.queue_free()
 		
-	SignalBus.place_player.emit(new_stage.get_spawn_position())
-	player_reference.modulate = Color(1,1,1,1)
-	await get_tree().process_frame
-	call_deferred("add_child", new_stage)
-	
 	current_stage = new_stage
 	current_stage.initialize()
-	for i in current_stage.get_children():
-		if i.has_method("initialize"):
-			i.initialize()
-			
-	current_stage_number += 1
+	SignalBus.place_player.emit(current_stage.get_spawn_position())
+	fade_in()
+	await get_tree().process_frame
+	call_deferred("add_child", new_stage)
 
 func stage_transition(body: Node) -> void:
-	if current_stage_number == stages.size():
+	current_stage_number += 1
+	if current_stage_number >= stages.size():
 		SignalBus.final_stage_end.emit()
 	elif body == player_reference:
+		
 		load_stage(current_stage_number)
+
+func fade_out() -> void:
+	if current_stage == null:
+		return
+		
+	var tween = create_tween()
+	tween.tween_property(current_stage, "modulate", Color(1,1,1,0), 0.25)
+	tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,0), 0.25)
+
+func fade_in() -> void:
+	if current_stage == null:
+		return
+	
+	var tween = create_tween()
+	tween.tween_property(current_stage, "modulate", Color(1,1,1,1), 0.25)
+	tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,1), 0.25)
 
 func increment_time() -> void:
 	elapsed_seconds += 1
@@ -89,14 +106,18 @@ func update_game_time() -> void:
 	else:
 		mod_s = str(elapsed_seconds)
 		
-	if elapsed_seconds < 10:
+	if elapsed_minutes < 10:
 		mod_m = "0" + str(elapsed_minutes)
 	else:
 		mod_m = str(elapsed_minutes)
 		
-	if elapsed_seconds < 10:
+	if elapsed_hours < 10:
 		mod_h = "0" + str(elapsed_hours)
 	else:
 		mod_h = str(elapsed_hours)
 	game_clock.text = mod_h + ":" + mod_m + ":" + mod_s
 	pass
+
+func restart_stage() -> void:
+	fade_out()
+	load_stage(current_stage_number)

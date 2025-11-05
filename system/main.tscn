@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=11 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
-[ext_resource type="PackedScene" uid="uid://dw2t7ajy0i7a3" path="res://objects/stages/tutorial_3.tscn" id="5_tuma4"]
-[ext_resource type="PackedScene" uid="uid://bdbx8yk3ganuv" path="res://objects/stages/tutorial_4.tscn" id="6_kmnl7"]
-[ext_resource type="PackedScene" uid="uid://bmbtkqcwedku7" path="res://objects/stages/stage_4.tscn" id="7_0hq6h"]
-[ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/stage_3.tscn" id="7_2soig"]
-[ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/tutorial_1.tscn" id="7_7rmty"]
-[ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/tutorial_2.tscn" id="8_7rmty"]
+[ext_resource type="PackedScene" uid="uid://dw2t7ajy0i7a3" path="res://objects/stages/tutorials/tutorial_3.tscn" id="5_tuma4"]
+[ext_resource type="PackedScene" uid="uid://bdbx8yk3ganuv" path="res://objects/stages/tutorials/tutorial_4.tscn" id="6_kmnl7"]
+[ext_resource type="PackedScene" uid="uid://bmbtkqcwedku7" path="res://objects/stages/regular/stage_4.tscn" id="7_0hq6h"]
+[ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/regular/stage_3.tscn" id="7_2soig"]
+[ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/tutorials/tutorial_1.tscn" id="7_7rmty"]
+[ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/tutorials/tutorial_2.tscn" id="8_7rmty"]
 [ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
+[ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer", "restart_button")]
 script = ExtResource("1_7am6p")
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
@@ -24,6 +25,7 @@ stages = Dictionary[int, PackedScene]({
 black_screen = NodePath("black")
 game_clock = NodePath("CanvasLayer/Label")
 timer = NodePath("Timer")
+restart_button = NodePath("CanvasLayer/restart_level")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -31,12 +33,19 @@ timer = NodePath("Timer")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -26.0
-offset_right = 26.0
-offset_bottom = 27.0
+offset_left = -48.0
+offset_top = 24.0
+offset_right = 33.0
+offset_bottom = 51.0
 grow_horizontal = 2
 theme = ExtResource("9_2soig")
 text = "00:00:00"
+
+[node name="restart_level" parent="CanvasLayer" instance=ExtResource("10_5231d")]
+offset_left = 392.0
+offset_top = 8.0
+offset_right = 467.0
+offset_bottom = 83.0
 
 [node name="black" type="Polygon2D" parent="."]
 z_index = -1

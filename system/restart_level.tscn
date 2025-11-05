@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bslijsiqef7mv"]
+
+[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://ZeroCool.otf" id="1_sq7mp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s31ak"]
+bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sq7mp"]
+bg_color = Color(0.27434546, 0.06392139, 0.07748791, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5vsk"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfy1f"]
+bg_color = Color(0.2844747, 0.046478145, 0.075899474, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="Theme" id="Theme_sfy1f"]
+Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
+Button/fonts/font = ExtResource("1_sq7mp")
+Button/styles/focus = SubResource("StyleBoxEmpty_sq7mp")
+Button/styles/hover = SubResource("StyleBoxFlat_s31ak")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_sq7mp")
+Button/styles/normal = SubResource("StyleBoxFlat_l5vsk")
+Button/styles/pressed = SubResource("StyleBoxFlat_sfy1f")
+
+[node name="restart_level" type="Button"]
+offset_right = 75.0
+offset_bottom = 75.0
+scale = Vector2(0.75, 0.75)
+focus_mode = 0
+theme = SubResource("Theme_sfy1f")
+text = "Restart"

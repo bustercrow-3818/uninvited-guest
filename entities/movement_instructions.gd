@@ -4,6 +4,7 @@ class_name MovementInstructions
 
 @export_category("Physics")
 @export var move_speed: float
+@export var accel: float
 @export var decel: float
 @export var gravity: float
 @export var terminal_velocity: float
@@ -13,10 +14,10 @@ class_name MovementInstructions
 @export var sprite: AnimatedSprite2D
 
 var parent_on_floor: bool = true
-var direction: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var active: bool = false
 var current_action_charges: int = 1
+var direction: Vector2
 
 enum states {
 	IDLE,
@@ -35,27 +36,29 @@ func initialize() -> void:
 	
 	pass
 	
-	
 func connect_signals() -> void:
 	
 	pass
 
 func _physics_process(_delta: float) -> void:
 	if active == true:
-		fall()
 		process_state()
 		
 		match current_state:
 			states.ACTION:
 				action(_delta)
 			states.MOVING:
-				move()
+				move(_delta)
 			states.STOPPING:
 				slow()
 			states.IDLE:
 				idle()
-	else:
-		velocity = Vector2.ZERO
+	#else:
+		#velocity = Vector2.ZERO
+
+func get_direction() -> Vector2:
+	var _direction = Vector2.ZERO
+	return _direction
 
 func get_velocity() -> Vector2:
 	return velocity
@@ -68,7 +71,7 @@ func get_state_name() -> String:
 
 func slow() -> void:
 	if velocity.x != 0:
-		velocity.x -= decel * direction.x
+		velocity.x -= decel * get_direction().x
 
 func fall() -> void:
 	velocity.y += gravity
@@ -76,7 +79,9 @@ func fall() -> void:
 		velocity.y = terminal_velocity
 
 func idle() -> void:
-	sprite.play("idle")
+	velocity = velocity.move_toward(Vector2.ZERO, decel)
+	if velocity == Vector2.ZERO:
+		sprite.play("idle")
 
 func action(_delta: float) -> void:
 	pass
@@ -95,6 +100,6 @@ func on_floor_check() -> bool:
 		
 	return check
 
-@abstract func move() -> void
+@abstract func move(_delta: float) -> void
 
 @abstract func process_state() -> void

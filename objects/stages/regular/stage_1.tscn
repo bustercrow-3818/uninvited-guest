@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bq548lao1n5hu" path="res://assets/Graveyard [16x16]/Props&Objects/Trees.png" id="6_pgeck"]
 [ext_resource type="Texture2D" uid="uid://dp0naiawibuud" path="res://assets/Graveyard [16x16]/Tiles/Back_Tiles.png" id="7_11vpy"]
 [ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="10_b1742"]
-[ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker.tscn" id="11_pgeck"]
+[ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker/ghost_blocker_v.tscn" id="11_pgeck"]
 [ext_resource type="PackedScene" uid="uid://bumq0usmd6ary" path="res://objects/props/switch.tscn" id="12_vjmdg"]
 [ext_resource type="PackedScene" uid="uid://b3m04gont7f1n" path="res://objects/interactables/grave.tscn" id="13_i0cj0"]
 

@@ -12,6 +12,8 @@ var modes: Dictionary
 func _physics_process(_delta: float) -> void:
 	velocity = move_instructions.get_velocity()
 	move_and_slide()
+	if is_on_wall() == true and move_instructions is NPCMovement:
+		move_instructions.reverse_direction()
 
 func connect_signals() -> void:
 	SignalBus.possessed.connect(switch_mode)

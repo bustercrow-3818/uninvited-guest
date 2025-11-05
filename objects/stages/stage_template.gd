@@ -9,6 +9,9 @@ var bounds: Vector2
 func initialize() -> void:
 	bounds = get_used_rect().size * tile_set.tile_size
 	SignalBus.broadcast_bounds.emit(bounds)
+	for i in get_children():
+		if i.has_method("initialize"):
+			i.initialize()
 
 func get_bounds() -> Vector2:
 	return bounds
