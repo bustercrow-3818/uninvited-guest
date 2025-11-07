@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b6by0hr2yqoun"]
+[gd_scene load_steps=30 format=3 uid="uid://b6by0hr2yqoun"]
 
 [ext_resource type="Script" uid="uid://dp3vx4bhsowe1" path="res://entities/npc/npc.gd" id="1_e3lg2"]
 [ext_resource type="Texture2D" uid="uid://blfkrb5njc2wp" path="res://assets/npc/npc/idle.png" id="2_y6suo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtpl8ti3usqj8" path="res://assets/npc/npc/jump.png" id="3_57jtd"]
 [ext_resource type="Texture2D" uid="uid://u7dxhcipn7a4" path="res://assets/npc/npc/run.png" id="3_hiv41"]
 [ext_resource type="Script" uid="uid://chm1g45n64u0" path="res://entities/npc/possessed_movement.gd" id="4_wfxk4"]
+[ext_resource type="AudioStream" uid="uid://31w6hruq074m" path="res://assets/sound/npc_jump.wav" id="7_57jtd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57jtd"]
 atlas = ExtResource("2_y6suo")
@@ -245,9 +246,10 @@ metadata/_custom_type_script = "uid://c0ck0sdchwws4"
 [node name="walk_timer" type="Timer" parent="NPCMovement"]
 autostart = true
 
-[node name="PossessedMovement" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="PossessedMovement" type="Node" parent="." node_paths=PackedStringArray("jump_sound", "sprite")]
 script = ExtResource("4_wfxk4")
 jump_speed = 225.0
+jump_sound = NodePath("../jump_sound")
 move_speed = 90.0
 accel = 15.0
 decel = 4.0
@@ -268,3 +270,6 @@ text = "test"
 libraries = {
 &"": SubResource("AnimationLibrary_37o05")
 }
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_57jtd")

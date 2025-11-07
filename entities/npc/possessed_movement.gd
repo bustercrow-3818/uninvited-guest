@@ -2,6 +2,7 @@ extends MovementInstructions
 class_name PossessedMovement
 
 @export var jump_speed: float
+@export var jump_sound: AudioStreamPlayer2D
 
 func move(_delta: float) -> void:
 	direction = get_direction()
@@ -48,6 +49,7 @@ func connect_signals() -> void:
 	
 func action(_delta) -> void:
 	if active == true and current_action_charges > 0:
+		jump_sound.play()
 		sprite.play("jump")
 		velocity.y -= jump_speed
 		current_action_charges -= 1

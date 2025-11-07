@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bumq0usmd6ary"]
+[gd_scene load_steps=8 format=3 uid="uid://bumq0usmd6ary"]
 
 [ext_resource type="Texture2D" uid="uid://dyufcun1hlxs2" path="res://assets/Medieval_props_free.png" id="1_1483w"]
 [ext_resource type="Script" uid="uid://obk5jh0wme04" path="res://objects/props/switch.gd" id="1_loeb2"]
+[ext_resource type="AudioStream" uid="uid://c4sx6r3dyl8o1" path="res://assets/sound/switch.wav" id="3_kllgg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_loeb2"]
 radius = 16.0
@@ -17,13 +18,14 @@ region = Rect2(76, 104, 39, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1483w"]
 size = Vector2(32, 38)
 
-[node name="lever" type="StaticBody2D" node_paths=PackedStringArray("area", "on", "off")]
+[node name="lever" type="StaticBody2D" node_paths=PackedStringArray("area", "on", "off", "sound")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_loeb2")
 area = NodePath("detection")
 on = NodePath("on")
 off = NodePath("off")
+sound = NodePath("AudioStreamPlayer2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -46,3 +48,6 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_1483w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kllgg")

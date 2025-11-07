@@ -6,6 +6,7 @@ class_name PlayerMovement
 @export var speed: float
 @export var time: float
 @export var cooldown_time: float
+@export var sound: AudioStreamPlayer2D
 
 var cooling: bool = false
 
@@ -36,6 +37,8 @@ func cooldown() -> void:
 
 func process_state() -> void:
 	if Input.is_action_just_pressed("action"):
+		if active == true:
+			sound.play()
 		current_state = states.ACTION
 	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.ACTION:
 		current_state = states.MOVING

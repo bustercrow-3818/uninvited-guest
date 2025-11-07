@@ -6,6 +6,8 @@ class_name Player
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
 @export var collision_shape: CollisionShape2D
+@export var possession_sound: AudioStreamPlayer2D
+@export var release_sound: AudioStreamPlayer2D
 
 var possessing: bool = false
 
@@ -55,6 +57,8 @@ func possess_target() -> void:
 		
 		sprite.play("dash")
 		if collision is Entity:
+			possession_sound.play()
+			move_instructions.active = false
 			switch_pov(collision)
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
 
@@ -73,11 +77,13 @@ func release_victim() -> void:
 	var victim: Node = camera.get_parent()
 	var tween = create_tween()
 	
+	move_instructions.active = true
 	victim.modulate = Color(1, 1, 1, 1)
 	possessing = false
 	modulate = Color(1, 1, 1, 0.75)
 	collision_shape.disabled = false
 	camera.reparent(self)
+	release_sound.play()
 	tween.tween_property(camera, "position", Vector2.ZERO, 0.15)
 	SignalBus.release.emit(victim, "NPCMovement")
 

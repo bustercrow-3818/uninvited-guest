@@ -7,6 +7,7 @@ extends Node2D
 @export var game_clock: Label
 @export var timer: Timer
 @export var restart_button: Button
+@export var bgm: AudioStreamPlayer2D
 
 var player_reference: Player
 var current_stage: TileMapLayer

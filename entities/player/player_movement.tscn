@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://bbjnctfd74jt1"]
+[gd_scene load_steps=2 format=3 uid="uid://bbjnctfd74jt1"]
+
+[ext_resource type="AudioStream" uid="uid://dqlahe3km5bcg" path="res://assets/sound/dash.wav" id="1_kdbhx"]
 
 [node name="player_movement" type="Node"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_kdbhx")

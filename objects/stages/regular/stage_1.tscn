@@ -1234,11 +1234,7 @@ position = Vector2(186, 132)
 
 [node name="vertical" parent="." instance=ExtResource("11_pgeck")]
 position = Vector2(224, 177)
-
-[node name="dual_action_r" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_vjmdg")]
-position = Vector2(288, 272)
-barrier_on = false
-controlled_barrier = [NodePath("../vertical"), NodePath("../horizontal")]
+inverted = true
 
 [node name="dual_action_l" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_vjmdg")]
 position = Vector2(160, 272)

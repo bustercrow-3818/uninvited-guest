@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=13 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -11,10 +11,10 @@
 [ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
 [ext_resource type="PackedScene" uid="uid://dkrwgn42gjxkg" path="res://objects/stages/regular/stage_1.tscn" id="9_i8srq"]
 [ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
+[ext_resource type="AudioStream" uid="uid://dyfogenb01d6i" path="res://assets/sound/BGM.wav" id="12_3mgql"]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer", "restart_button")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer", "restart_button", "bgm")]
 script = ExtResource("1_7am6p")
-starting_stage = 6
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("7_7rmty"),
@@ -29,6 +29,7 @@ black_screen = NodePath("black")
 game_clock = NodePath("CanvasLayer/Label")
 timer = NodePath("Timer")
 restart_button = NodePath("CanvasLayer/restart_level")
+bgm = NodePath("bgm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -51,9 +52,14 @@ offset_right = 467.0
 offset_bottom = 83.0
 
 [node name="black" type="Polygon2D" parent="."]
-z_index = -1
+z_index = -2
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-381, -285, 1032, -288, 1032, 768, -384, 768)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_3mgql")
+volume_db = 4.0
+autoplay = true

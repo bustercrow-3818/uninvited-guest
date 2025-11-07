@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc73q1ensdj1b"]
+[gd_scene load_steps=24 format=3 uid="uid://cc73q1ensdj1b"]
 
 [ext_resource type="Script" uid="uid://bnelc3bixqywx" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://cmjifxdyu4v4u" path="res://assets/BlueSpirit/blueSpiritidle.png" id="1_symyc"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://vs4ao0kiflrk" path="res://assets/BlueSpirit/blueflameattack.png" id="4_8fjmc"]
 [ext_resource type="Script" uid="uid://c42bjnljdtwcj" path="res://entities/player/player_movement.gd" id="4_bls4j"]
 [ext_resource type="Theme" uid="uid://dwv5n83my5e74" path="res://system/themes/tutorial.tres" id="4_qiwj3"]
+[ext_resource type="AudioStream" uid="uid://bv4dcuw3rytwn" path="res://assets/sound/possession_2.wav" id="7_qiwj3"]
+[ext_resource type="AudioStream" uid="uid://p67dcm2koj0p" path="res://assets/sound/possession.wav" id="8_26q78"]
+[ext_resource type="AudioStream" uid="uid://dqlahe3km5bcg" path="res://assets/sound/dash.wav" id="9_bectd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gx6sm"]
 atlas = ExtResource("4_8fjmc")
@@ -107,7 +110,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_symyc"]
 radius = 8.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "move_instructions")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "possession_sound", "release_sound", "move_instructions")]
 modulate = Color(1, 1, 1, 0.7529412)
 z_index = 2
 collision_layer = 6
@@ -117,6 +120,8 @@ script = ExtResource("1_abrql")
 sprite = NodePath("AnimatedSprite2D")
 camera = NodePath("Camera2D")
 collision_shape = NodePath("CollisionShape2D")
+possession_sound = NodePath("possession_sound")
+release_sound = NodePath("release_sound")
 move_instructions = NodePath("player_movement")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -152,14 +157,24 @@ text = "R.I.P"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="player_movement" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_sglur")]
+[node name="player_movement" parent="." node_paths=PackedStringArray("sound", "sprite") instance=ExtResource("3_sglur")]
 script = ExtResource("4_bls4j")
 speed = 325.0
 time = 0.25
 cooldown_time = 1.0
+sound = NodePath("../dash")
 move_speed = 35.0
 accel = 4.0
 decel = 0.85
 gravity = 1.0
 terminal_velocity = 15.0
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="possession_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qiwj3")
+
+[node name="release_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_26q78")
+
+[node name="dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bectd")

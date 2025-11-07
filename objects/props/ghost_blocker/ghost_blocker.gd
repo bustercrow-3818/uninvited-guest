@@ -2,7 +2,10 @@ extends StaticBody2D
 
 @export var sprite: AnimatedSprite2D
 @export var wall: Array[Sprite2D]
+
+@export_category("Default State")
 @export var active: bool = false
+@export var inverted: bool = false
 
 @export_category("Wall Sprites")
 @export var blue_wall: Texture2D
@@ -43,5 +46,9 @@ func initialize() -> void:
 	connect_signals()
 	
 func connect_signals() -> void:
-	SignalBus.turn_off_blocker.connect(deactivate)
-	SignalBus.turn_on_blocker.connect(activate)
+	if inverted == false:
+		SignalBus.turn_off_blocker.connect(deactivate)
+		SignalBus.turn_on_blocker.connect(activate)
+	else:
+		SignalBus.turn_off_blocker.connect(activate)
+		SignalBus.turn_on_blocker.connect(deactivate)

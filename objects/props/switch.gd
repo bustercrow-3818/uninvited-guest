@@ -9,6 +9,7 @@ class_name Switch
 @export var controlled_barrier: Array[StaticBody2D]
 @export var on: Sprite2D
 @export var off: Sprite2D
+@export var sound: AudioStreamPlayer2D
 
 func initialize() -> void:
 	connect_signals()
@@ -19,14 +20,21 @@ func connect_signals() -> void:
 func toggle(body: Node) -> void:
 	if body is not Entity:
 		return
-		
+	
+	var barrier_check: bool = barrier_on
+	
 	if body.get_move_instruction() is PossessedMovement:
 		for i in controlled_barrier:
 			SignalBus.turn_off_blocker.emit(i)
+		barrier_on = false
 		on.hide()
 		off.show()
 	elif body is Player:
 		for i in controlled_barrier:
 			SignalBus.turn_on_blocker.emit(i)
+		barrier_on = true
 		on.show()
 		off.hide()
+	
+	if barrier_check != barrier_on:
+		sound.play()
