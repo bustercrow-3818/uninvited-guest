@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://38kkkxjrqj5u"
-path="res://.godot/imported/ZeroCool.otf-75f68fdd05bf8142882a1600f8167278.fontdata"
+path="res://.godot/imported/ZeroCool.otf-08a5dc0dec868a4d50cec4b59945a19a.fontdata"
 
 [deps]
 
-source_file="res://ZeroCool.otf"
-dest_files=["res://.godot/imported/ZeroCool.otf-75f68fdd05bf8142882a1600f8167278.fontdata"]
+source_file="res://assets/ZeroCool.otf"
+dest_files=["res://.godot/imported/ZeroCool.otf-08a5dc0dec868a4d50cec4b59945a19a.fontdata"]
 
 [params]
 

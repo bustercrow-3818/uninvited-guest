@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cat7qt15k321u"]
 
-[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://ZeroCool.otf" id="1_1nk0g"]
+[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://assets/ZeroCool.otf" id="1_1nk0g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
 

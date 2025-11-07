@@ -1205,7 +1205,6 @@ script = ExtResource("2_dlbpf")
 spawn_point = NodePath("spawn")
 
 [node name="props" type="TileMapLayer" parent="."]
-visible = false
 tile_map_data = PackedByteArray("AAAEABAAAQACAAIAAAAFABAAAQADAAIAAAAIABAAAQACAAIAAAAKABAAAQACAAIAAAAMABAAAQABAAIAAAAPABAAAQABAAIAAAATABAAAQADAAIAAAAUABAAAQAEAAIAAAAVABAAAQADAAIAAAAXABAAAQADAAIAAAAGABAAAwAAAAIAAAAJABAAAwACAAQAAAARABAAAwAEAAQAAAAWABAAAwAEAAMAAAA=")
 tile_set = SubResource("TileSet_8k5pc")
 
@@ -1230,6 +1229,5 @@ theme = ExtResource("10_638hx")
 text = "HAUNTLET"
 
 [node name="movement_keys_sign" parent="." instance=ExtResource("11_dlbpf")]
-visible = false
-position = Vector2(75, 249)
+position = Vector2(75, 240)
 scale = Vector2(0.125, 0.125)

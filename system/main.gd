@@ -4,10 +4,11 @@ extends Node2D
 @export var player: PackedScene
 @export var stages: Dictionary[int, PackedScene]
 @export var black_screen: Polygon2D
-@export var game_clock: Label
 @export var timer: Timer
 @export var restart_button: Button
 @export var bgm: AudioStreamPlayer2D
+@export var game_clock: Label
+@export var game_end_msg: Label
 
 var player_reference: Player
 var current_stage: TileMapLayer
@@ -63,10 +64,12 @@ func load_stage(next_stage: int, initial: bool = false) -> void:
 
 func stage_transition(body: Node) -> void:
 	current_stage_number += 1
+	
 	if current_stage_number >= stages.size():
+		game_end()
 		SignalBus.final_stage_end.emit()
-	elif body == player_reference:
 		
+	elif body == player_reference:
 		load_stage(current_stage_number)
 
 func fade_out() -> void:
@@ -76,6 +79,7 @@ func fade_out() -> void:
 	var tween = create_tween()
 	tween.tween_property(current_stage, "modulate", Color(1,1,1,0), 0.25)
 	tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,0), 0.25)
+	await tween.finished
 
 func fade_in() -> void:
 	if current_stage == null:
@@ -122,3 +126,13 @@ func update_game_time() -> void:
 func restart_stage() -> void:
 	fade_out()
 	load_stage(current_stage_number)
+
+func game_end() -> void:
+	timer.stop()
+	game_end_msg.position = get_viewport_rect().size / 2
+	fade_out()
+	
+	var tween = create_tween()
+	tween.tween_property(game_end_msg, "modulate", Color(1,1,1,1), 3)
+	
+	pass

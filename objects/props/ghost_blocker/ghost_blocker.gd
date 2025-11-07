@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name Blocker
 
 @export var sprite: AnimatedSprite2D
 @export var wall: Array[Sprite2D]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bslijsiqef7mv"]
 
-[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://ZeroCool.otf" id="1_sq7mp"]
+[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://assets/ZeroCool.otf" id="1_sq7mp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
 

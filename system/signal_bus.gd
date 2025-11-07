@@ -11,6 +11,7 @@ signal release(victim: Node, mode: String)
 
 signal turn_on_blocker(target: Node)
 signal turn_off_blocker(target: Node)
+signal switch_flipped(id: Switch)
 
 signal lay_to_rest(body: Node)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=14 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -11,9 +11,10 @@
 [ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
 [ext_resource type="PackedScene" uid="uid://dkrwgn42gjxkg" path="res://objects/stages/regular/stage_1.tscn" id="9_i8srq"]
 [ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
+[ext_resource type="PackedScene" uid="uid://7i11aqy73p1" path="res://objects/stages/regular/stage_2.tscn" id="10_qs5jh"]
 [ext_resource type="AudioStream" uid="uid://dyfogenb01d6i" path="res://assets/sound/BGM.wav" id="12_3mgql"]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer", "restart_button", "bgm")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "timer", "restart_button", "bgm", "game_clock", "game_end_msg")]
 script = ExtResource("1_7am6p")
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
@@ -23,13 +24,15 @@ stages = Dictionary[int, PackedScene]({
 3: ExtResource("6_kmnl7"),
 4: ExtResource("7_2soig"),
 5: ExtResource("7_0hq6h"),
-6: ExtResource("9_i8srq")
+6: ExtResource("9_i8srq"),
+7: ExtResource("10_qs5jh")
 })
 black_screen = NodePath("black")
-game_clock = NodePath("CanvasLayer/Label")
 timer = NodePath("Timer")
 restart_button = NodePath("CanvasLayer/restart_level")
 bgm = NodePath("bgm")
+game_clock = NodePath("CanvasLayer/Label")
+game_end_msg = NodePath("CanvasLayer/game_end")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -42,6 +45,7 @@ offset_top = 24.0
 offset_right = 33.0
 offset_bottom = 51.0
 grow_horizontal = 2
+pivot_offset = Vector2(40.5, 13.5)
 theme = ExtResource("9_2soig")
 text = "00:00:00"
 
@@ -50,6 +54,15 @@ offset_left = 392.0
 offset_top = 8.0
 offset_right = 467.0
 offset_bottom = 83.0
+
+[node name="game_end" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 52.0
+offset_bottom = 27.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(26, 13.5)
+theme = ExtResource("9_2soig")
+text = "R.I.P."
 
 [node name="black" type="Polygon2D" parent="."]
 z_index = -2

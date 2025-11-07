@@ -37,7 +37,7 @@ func cooldown() -> void:
 
 func process_state() -> void:
 	if Input.is_action_just_pressed("action"):
-		if active == true:
+		if active == true and cooling == false:
 			sound.play()
 		current_state = states.ACTION
 	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.ACTION:
