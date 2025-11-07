@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=12 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -9,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/tutorials/tutorial_1.tscn" id="7_7rmty"]
 [ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/tutorials/tutorial_2.tscn" id="8_7rmty"]
 [ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
+[ext_resource type="PackedScene" uid="uid://dkrwgn42gjxkg" path="res://objects/stages/regular/stage_1.tscn" id="9_i8srq"]
 [ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "game_clock", "timer", "restart_button")]
 script = ExtResource("1_7am6p")
+starting_stage = 6
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("7_7rmty"),
@@ -20,7 +22,8 @@ stages = Dictionary[int, PackedScene]({
 2: ExtResource("5_tuma4"),
 3: ExtResource("6_kmnl7"),
 4: ExtResource("7_2soig"),
-5: ExtResource("7_0hq6h")
+5: ExtResource("7_0hq6h"),
+6: ExtResource("9_i8srq")
 })
 black_screen = NodePath("black")
 game_clock = NodePath("CanvasLayer/Label")

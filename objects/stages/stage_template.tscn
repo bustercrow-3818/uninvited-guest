@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://ds5akbq3i54n8"]
+[gd_scene load_steps=24 format=4 uid="uid://ds5akbq3i54n8"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_8k5pc"]
 [ext_resource type="Texture2D" uid="uid://dp0naiawibuud" path="res://assets/Graveyard [16x16]/Tiles/Back_Tiles.png" id="2_0hre5"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="10_52krf"]
 [ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker/ghost_blocker_v.tscn" id="11_x5m07"]
 [ext_resource type="PackedScene" uid="uid://bumq0usmd6ary" path="res://objects/props/switch.tscn" id="12_ddobo"]
+[ext_resource type="PackedScene" uid="uid://fi5jgqobqjlq" path="res://objects/props/ghost_blocker/ghost_blocker_h.tscn" id="13_52krf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
 texture = ExtResource("1_8k5pc")
@@ -1238,4 +1239,7 @@ position = Vector2(223, 178)
 position = Vector2(223, 178)
 
 [node name="spawn" type="Node2D" parent="."]
+position = Vector2(223, 178)
+
+[node name="ghost_blocker_v" parent="." instance=ExtResource("13_52krf")]
 position = Vector2(223, 178)

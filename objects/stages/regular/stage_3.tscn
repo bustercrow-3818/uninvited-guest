@@ -1227,22 +1227,22 @@ tile_set = SubResource("TileSet_mvpcw")
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(65, 136)
 
-[node name="ghost_blocker" parent="." instance=ExtResource("9_7ojy2")]
+[node name="left_blocker" parent="." instance=ExtResource("9_7ojy2")]
 position = Vector2(137, 225)
 active = true
 
 [node name="npc" parent="." instance=ExtResource("10_mv23r")]
 position = Vector2(66, 257)
 
-[node name="lever" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("11_p14t0")]
+[node name="right_lever" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("11_p14t0")]
 position = Vector2(187, 272)
-controlled_barrier = NodePath("../ghost_blocker")
+controlled_barrier = [NodePath("../left_blocker")]
 
-[node name="lever2" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("11_p14t0")]
+[node name="left_lever" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("11_p14t0")]
 position = Vector2(96, 144)
-controlled_barrier = NodePath("../ghost_blocker2")
+controlled_barrier = [NodePath("../right_blocker")]
 
-[node name="ghost_blocker2" parent="." instance=ExtResource("9_7ojy2")]
+[node name="right_blocker" parent="." instance=ExtResource("9_7ojy2")]
 position = Vector2(272, 273)
 active = true
 

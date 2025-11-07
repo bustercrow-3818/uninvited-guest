@@ -1225,7 +1225,7 @@ active = true
 
 [node name="lever" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_iqhad")]
 position = Vector2(230, 224)
-controlled_barrier = NodePath("../ghost_blocker")
+controlled_barrier = [NodePath("../ghost_blocker")]
 
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(88, 256)

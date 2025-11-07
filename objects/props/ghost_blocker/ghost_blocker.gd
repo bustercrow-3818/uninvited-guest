@@ -10,6 +10,7 @@ extends StaticBody2D
 
 func activate(body: Node2D) -> void:
 	if body == self:
+		active = true
 		collision_layer = 4
 		collision_mask = 4
 		sprite.play("active")
@@ -18,11 +19,21 @@ func activate(body: Node2D) -> void:
 	
 func deactivate(body: Node2D) -> void:
 	if body == self:
+		active = false
 		collision_layer = 1
 		collision_mask = 1
 		sprite.play("inactive")
 		for i in wall:
 			i.texture = red_wall
+
+func toggle(body: Node2D) -> void:
+	if body != self:
+		return
+	
+	if active == true:
+		deactivate(self)
+	else:
+		activate(self)
 
 func initialize() -> void:
 	if active == true:

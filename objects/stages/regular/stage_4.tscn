@@ -1224,28 +1224,28 @@ position = Vector2(73, 174)
 [node name="npc2" parent="." instance=ExtResource("10_844ir")]
 position = Vector2(229, 131)
 
-[node name="ghost_blocker" parent="." instance=ExtResource("11_lxwwp")]
+[node name="ghost_blocker_ll" parent="." instance=ExtResource("11_lxwwp")]
 position = Vector2(125, 273)
 active = true
 
-[node name="ghost_blocker2" parent="." instance=ExtResource("11_lxwwp")]
+[node name="ghost_blocker_lr" parent="." instance=ExtResource("11_lxwwp")]
 position = Vector2(329, 273)
 active = true
 
-[node name="ghost_blocker3" parent="." instance=ExtResource("11_lxwwp")]
+[node name="ghost_blocker_tc" parent="." instance=ExtResource("11_lxwwp")]
 position = Vector2(262, 145)
 
-[node name="lever" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
+[node name="lever_ll" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
 position = Vector2(76, 272)
-controlled_barrier = NodePath("../ghost_blocker")
+controlled_barrier = [NodePath("../ghost_blocker_ll")]
 
-[node name="lever2" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
+[node name="lever_tr" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
 position = Vector2(375, 160)
-controlled_barrier = NodePath("../ghost_blocker2")
+controlled_barrier = [NodePath("../ghost_blocker_lr")]
 
-[node name="lever3" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
+[node name="lever_br" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_jdtif")]
 position = Vector2(291, 272)
-controlled_barrier = NodePath("../ghost_blocker3")
+controlled_barrier = [NodePath("../ghost_blocker_tc")]
 
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(63, 62)
