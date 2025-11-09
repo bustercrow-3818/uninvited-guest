@@ -1,20 +1,23 @@
-[gd_scene load_steps=22 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=25 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
-[ext_resource type="PackedScene" uid="uid://dw2t7ajy0i7a3" path="res://objects/stages/tutorials/tutorial_3.tscn" id="5_tuma4"]
-[ext_resource type="PackedScene" uid="uid://bdbx8yk3ganuv" path="res://objects/stages/tutorials/tutorial_4.tscn" id="6_kmnl7"]
+[ext_resource type="PackedScene" uid="uid://dw2t7ajy0i7a3" path="res://objects/stages/regular/tutorials/tutorial_3.tscn" id="5_tuma4"]
+[ext_resource type="PackedScene" uid="uid://bdbx8yk3ganuv" path="res://objects/stages/regular/tutorials/tutorial_4.tscn" id="6_kmnl7"]
 [ext_resource type="PackedScene" uid="uid://bmbtkqcwedku7" path="res://objects/stages/regular/stage_4.tscn" id="7_0hq6h"]
 [ext_resource type="PackedScene" uid="uid://c5fiwxkauxupv" path="res://objects/stages/regular/stage_3.tscn" id="7_2soig"]
-[ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/tutorials/tutorial_1.tscn" id="7_7rmty"]
-[ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/tutorials/tutorial_2.tscn" id="8_7rmty"]
+[ext_resource type="PackedScene" uid="uid://c7i0b1bmxp33p" path="res://objects/stages/regular/tutorials/tutorial_1.tscn" id="7_7rmty"]
+[ext_resource type="PackedScene" uid="uid://t1jd7of4xcjy" path="res://objects/stages/regular/tutorials/tutorial_2.tscn" id="8_7rmty"]
 [ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="9_2soig"]
 [ext_resource type="PackedScene" uid="uid://dkrwgn42gjxkg" path="res://objects/stages/regular/stage_1.tscn" id="9_i8srq"]
 [ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
 [ext_resource type="PackedScene" uid="uid://7i11aqy73p1" path="res://objects/stages/regular/stage_2.tscn" id="10_qs5jh"]
 [ext_resource type="PackedScene" uid="uid://dlgo5sl34om0b" path="res://objects/stages/regular/stage_5.tscn" id="11_jqgdb"]
 [ext_resource type="AudioStream" uid="uid://dyfogenb01d6i" path="res://assets/sound/BGM.wav" id="12_3mgql"]
+[ext_resource type="PackedScene" uid="uid://cwrfd8l1bqwd0" path="res://objects/stages/regular/stage_6.tscn" id="12_3ukea"]
+[ext_resource type="PackedScene" uid="uid://cusq5t7ifkb13" path="res://objects/stages/regular/stage_7.tscn" id="13_03ig6"]
 [ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://assets/ZeroCool.otf" id="13_io3fq"]
+[ext_resource type="PackedScene" uid="uid://b5ygaje3uy0jg" path="res://objects/stages/regular/stage_8.tscn" id="14_4s2s4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
 
@@ -46,7 +49,7 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="Theme" id="Theme_3ukea"]
+[sub_resource type="Theme" id="Theme_03ig6"]
 resource_local_to_scene = true
 Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
 Button/fonts/font = ExtResource("13_io3fq")
@@ -68,7 +71,10 @@ stages = Dictionary[int, PackedScene]({
 5: ExtResource("7_0hq6h"),
 6: ExtResource("9_i8srq"),
 7: ExtResource("10_qs5jh"),
-8: ExtResource("11_jqgdb")
+8: ExtResource("11_jqgdb"),
+9: ExtResource("12_3ukea"),
+10: ExtResource("13_03ig6"),
+11: ExtResource("14_4s2s4")
 })
 black_screen = NodePath("black")
 timer = NodePath("Timer")
@@ -103,7 +109,7 @@ offset_left = 1152.0
 offset_top = 88.0
 offset_right = 1227.0
 offset_bottom = 163.0
-theme = SubResource("Theme_3ukea")
+theme = SubResource("Theme_03ig6")
 text = "Play again"
 
 [node name="game_end" type="Label" parent="CanvasLayer"]

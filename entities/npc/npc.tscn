@@ -266,6 +266,7 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://chm1g45n64u0"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 96.0
 offset_top = -32.0
 offset_right = 136.0

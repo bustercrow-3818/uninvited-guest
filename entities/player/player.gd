@@ -8,6 +8,7 @@ class_name Player
 @export var collision_shape: CollisionShape2D
 @export var possession_sound: AudioStreamPlayer2D
 @export var release_sound: AudioStreamPlayer2D
+@export var collider: CollisionShape2D
 
 var possessing: bool = false
 
@@ -56,6 +57,7 @@ func possess_target() -> void:
 			move_instructions.direction = Vector2.ZERO
 			move_instructions.change_state(move_instructions.states.IDLE, "idle")
 			move_instructions.active = false
+			collider.disabled = true
 			switch_pov(collision)
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
 	else:
@@ -77,6 +79,7 @@ func release_victim() -> void:
 	var tween = create_tween()
 	
 	move_instructions.active = true
+	collider.disabled = false
 	victim.modulate = Color(1, 1, 1, 1)
 	possessing = false
 	modulate = Color(1, 1, 1, 0.75)

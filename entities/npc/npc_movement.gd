@@ -33,8 +33,6 @@ func reverse_direction() -> void:
 func restart_timer() -> void:
 	if active == true and walk_timer.is_stopped():
 		walk_timer.start(randi_range(walk_interval.x, walk_interval.y))
-	else:
-		print("didn't restart timer")
 
 #region state functions
 

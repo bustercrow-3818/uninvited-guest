@@ -108,9 +108,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_symyc"]
-radius = 8.0
+radius = 6.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "possession_sound", "release_sound", "move_instructions")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "camera", "collision_shape", "possession_sound", "release_sound", "collider", "move_instructions")]
 modulate = Color(1, 1, 1, 0.7529412)
 z_index = 2
 collision_layer = 6
@@ -122,6 +122,7 @@ camera = NodePath("Camera2D")
 collision_shape = NodePath("CollisionShape2D")
 possession_sound = NodePath("possession_sound")
 release_sound = NodePath("release_sound")
+collider = NodePath("CollisionShape2D")
 move_instructions = NodePath("player_movement")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -138,6 +139,7 @@ shape = SubResource("CircleShape2D_symyc")
 zoom = Vector2(2, 2)
 
 [node name="status" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

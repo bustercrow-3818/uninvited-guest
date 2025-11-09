@@ -41,7 +41,7 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_t2iuq")
 sprite = NodePath("AnimatedSprite2D")
-wall = [NodePath("wall"), NodePath("wall/Sprite2D2")]
+wall = [NodePath("CollisionShape2D/wall"), NodePath("CollisionShape2D/wall/Sprite2D2")]
 blue_wall = ExtResource("3_awau6")
 red_wall = ExtResource("3_dgsg2")
 
@@ -55,13 +55,13 @@ animation = &"active"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_isaf1")
 
-[node name="wall" type="Sprite2D" parent="."]
+[node name="wall" type="Sprite2D" parent="CollisionShape2D"]
 modulate = Color(1, 1, 1, 0.19607843)
 position = Vector2(0, -200)
 scale = Vector2(0.5, 1)
 texture = ExtResource("3_awau6")
 
-[node name="Sprite2D2" type="Sprite2D" parent="wall"]
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/wall"]
 position = Vector2(0, 400)
 rotation = 3.1415927
 texture = ExtResource("3_awau6")
