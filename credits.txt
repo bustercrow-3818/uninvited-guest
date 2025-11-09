@@ -9,3 +9,9 @@ https://otterisk.itch.io/hana-caraka-base-character
 
 Font
 https://ggbot.itch.io/zero-cool-font
+
+BGM
+https://freesound.org/people/EVRetro/
+
+SFX
+Created using https://www.bfxr.net/

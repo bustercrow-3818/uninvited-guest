@@ -226,16 +226,19 @@ metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 z_index = 1
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_js3qf")
-animation = &"jump"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y6suo")
 
-[node name="NPCMovement" type="Node" parent="." node_paths=PackedStringArray("timer", "sprite")]
+[node name="NPCMovement" type="Node" parent="." node_paths=PackedStringArray("walk_timer", "pause_timer", "debug", "sprite")]
 script = ExtResource("3_7bf1a")
-timer = NodePath("walk_timer")
-walk_interval = Vector2(0.5, 1)
+walk_timer = NodePath("walk_timer")
+pause_timer = NodePath("pause_timer")
+walk_interval = Vector2i(2, 3)
+active_time_range = Vector2(1, 2)
+debug = NodePath("../Label")
 move_speed = 60.0
 decel = 5.0
 gravity = 2.0
@@ -244,7 +247,10 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c0ck0sdchwws4"
 
 [node name="walk_timer" type="Timer" parent="NPCMovement"]
-autostart = true
+one_shot = true
+
+[node name="pause_timer" type="Timer" parent="NPCMovement"]
+one_shot = true
 
 [node name="PossessedMovement" type="Node" parent="." node_paths=PackedStringArray("jump_sound", "sprite")]
 script = ExtResource("4_wfxk4")
@@ -259,7 +265,6 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://chm1g45n64u0"
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = 96.0
 offset_top = -32.0
 offset_right = 136.0

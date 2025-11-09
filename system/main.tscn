@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=21 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -13,6 +13,47 @@
 [ext_resource type="PackedScene" uid="uid://bslijsiqef7mv" path="res://system/restart_level.tscn" id="10_5231d"]
 [ext_resource type="PackedScene" uid="uid://7i11aqy73p1" path="res://objects/stages/regular/stage_2.tscn" id="10_qs5jh"]
 [ext_resource type="AudioStream" uid="uid://dyfogenb01d6i" path="res://assets/sound/BGM.wav" id="12_3mgql"]
+[ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://assets/ZeroCool.otf" id="13_io3fq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s31ak"]
+bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sq7mp"]
+bg_color = Color(0.27434546, 0.06392139, 0.07748791, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5vsk"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfy1f"]
+bg_color = Color(0.2844747, 0.046478145, 0.075899474, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="Theme" id="Theme_jqgdb"]
+resource_local_to_scene = true
+Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
+Button/fonts/font = ExtResource("13_io3fq")
+Button/styles/focus = SubResource("StyleBoxEmpty_sq7mp")
+Button/styles/hover = SubResource("StyleBoxFlat_s31ak")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_sq7mp")
+Button/styles/normal = SubResource("StyleBoxFlat_l5vsk")
+Button/styles/pressed = SubResource("StyleBoxFlat_sfy1f")
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "timer", "restart_button", "bgm", "game_clock", "game_end_msg")]
 script = ExtResource("1_7am6p")
@@ -40,9 +81,9 @@ game_end_msg = NodePath("CanvasLayer/game_end")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -48.0
+offset_left = -40.0
 offset_top = 24.0
-offset_right = 33.0
+offset_right = 41.0
 offset_bottom = 51.0
 grow_horizontal = 2
 pivot_offset = Vector2(40.5, 13.5)
@@ -54,6 +95,14 @@ offset_left = 392.0
 offset_top = 8.0
 offset_right = 467.0
 offset_bottom = 83.0
+
+[node name="restart_game" parent="CanvasLayer" instance=ExtResource("10_5231d")]
+offset_left = 1152.0
+offset_top = 88.0
+offset_right = 1227.0
+offset_bottom = 163.0
+theme = SubResource("Theme_jqgdb")
+text = "Play again"
 
 [node name="game_end" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)

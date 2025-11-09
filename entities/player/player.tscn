@@ -138,7 +138,6 @@ shape = SubResource("CircleShape2D_symyc")
 zoom = Vector2(2, 2)
 
 [node name="status" type="Label" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -157,18 +156,23 @@ text = "R.I.P"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="player_movement" parent="." node_paths=PackedStringArray("sound", "sprite") instance=ExtResource("3_sglur")]
+[node name="player_movement" parent="." node_paths=PackedStringArray("debug", "sound", "cooldown_timer", "sprite") instance=ExtResource("3_sglur")]
 script = ExtResource("4_bls4j")
-speed = 325.0
+debug = NodePath("../status")
+dash_speed = 300.0
 time = 0.25
 cooldown_time = 0.65
 sound = NodePath("../dash")
+cooldown_timer = NodePath("dash_cooldown")
 move_speed = 35.0
 accel = 4.0
 decel = 0.85
 gravity = 1.0
 terminal_velocity = 15.0
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="dash_cooldown" type="Timer" parent="player_movement"]
+one_shot = true
 
 [node name="possession_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_qiwj3")

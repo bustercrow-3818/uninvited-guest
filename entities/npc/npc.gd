@@ -10,6 +10,7 @@ var modes: Dictionary
 
 
 func _physics_process(_delta: float) -> void:
+	debug.text = move_instructions.get_state_name()
 	velocity = move_instructions.get_velocity()
 	move_and_slide()
 	if is_on_wall() == true and move_instructions is NPCMovement:
@@ -23,8 +24,8 @@ func initialize() -> void:
 	for i in get_children():
 		if i is MovementInstructions:
 			modes[i.name] = i
-	move_instructions.initialize()
 	move_instructions.active = true
+	move_instructions.initialize()
 	connect_signals()
 
 func switch_mode(body: Node, new_mode: String) -> void:
@@ -38,3 +39,5 @@ func switch_mode(body: Node, new_mode: String) -> void:
 		animator.play("possession")
 		move_instructions = modes[new_mode]
 		move_instructions.active = true
+		if move_instructions.has_method("restart_timer"):
+			move_instructions.restart_timer()

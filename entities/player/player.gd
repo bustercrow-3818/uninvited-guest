@@ -12,12 +12,8 @@ class_name Player
 var possessing: bool = false
 
 func _physics_process(_delta: float) -> void:
-	label.text = str(move_instructions.get_direction())
 	if Input.is_action_just_pressed("release") and possessing == true:
 		release_victim()
-	
-	if move_instructions.get_state() == move_instructions.states.IDLE:
-		sprite.play("idle")
 	
 	if possessing == true:
 		pass
@@ -55,12 +51,14 @@ func possess_target() -> void:
 	if move_and_slide() == true and state == move_instructions.states.ACTION:
 		var collision = get_last_slide_collision().get_collider()
 		
-		sprite.play("dash")
 		if collision is Entity:
 			possession_sound.play()
+			move_instructions.direction = Vector2.ZERO
 			move_instructions.active = false
 			switch_pov(collision)
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
+	else:
+		pass
 
 func switch_pov(target: Node) -> void:
 	var tween = create_tween()

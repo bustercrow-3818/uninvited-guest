@@ -1,56 +1,35 @@
 extends MovementInstructions
 class_name PlayerMovement
 
+@export var debug: Label
 
 @export_category("Dash Stats")
-@export var speed: float
+@export var dash_speed: float
 @export var time: float
 @export var cooldown_time: float
 @export var sound: AudioStreamPlayer2D
+@export var cooldown_timer: Timer
 
 var cooling: bool = false
 
+func _process(_delta: float) -> void:
+	debug.text = "Current State: %s" % get_state_name()
+
 func initialize() -> void:
+	connect_signals()
+	current_state = initial_state
 	velocity = Vector2.ZERO
 	active = true
 
-func move(_delta: float) -> void:
-	direction = get_direction()
-	if direction != Vector2.ZERO:
-		velocity = velocity.move_toward(direction * move_speed, accel)
-
-func action(_delta: float) -> void:
-	
-	if cooling == false:
-		direction = get_direction()
-		velocity = direction * speed
-		await get_tree().create_timer(time).timeout
-		cooling = true
-		cooldown()
-	
-	current_state = states.IDLE
-	velocity = direction * move_speed
+func connect_signals() -> void:
+	cooldown_timer.timeout.connect(cooldown)
 
 func cooldown() -> void:
-	await get_tree().create_timer(cooldown_time).timeout
 	cooling = false
 
 func process_state() -> void:
-	if Input.is_action_just_pressed("action"):
-		if active == true and cooling == false:
-			sound.play()
-		current_state = states.ACTION
-	elif (Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right")) and current_state != states.ACTION:
-		current_state = states.MOVING
-	elif current_state != states.ACTION:
-		current_state = states.IDLE
+	pass
 	
-
-func idle() -> void:
-	velocity = velocity.move_toward(Vector2.ZERO, decel)
-	if velocity == Vector2.ZERO:
-		sprite.play("idle")
-
 func slow() -> void:
 	pass
 
@@ -61,3 +40,37 @@ func get_direction() -> Vector2:
 		_direction = Input.get_vector("left", "right", "up", "down").normalized()
 	
 	return _direction
+
+
+
+#region state functions
+
+func idle() -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, decel)
+	
+	#region state change logic
+	if Input.is_action_pressed("down") or Input.is_action_pressed("up") or Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		change_state(states.MOVING, "idle")
+	#endregion
+
+func action(_delta: float) -> void:
+	cooling = true
+	velocity = direction * dash_speed
+	velocity = velocity.move_toward(Vector2.ZERO, decel)
+	await get_tree().create_timer(time).timeout
+	
+	velocity = direction * move_speed
+	change_state(states.MOVING, "idle")
+
+func move(_delta: float) -> void:
+	direction = get_direction()
+	velocity = velocity.move_toward(direction * move_speed, accel)
+	
+	if Input.is_action_just_pressed("action") and cooling == false:
+		sound.play()
+		cooldown_timer.start(cooldown_time)
+		change_state(states.ACTION, "dash")
+	elif velocity == Vector2.ZERO:
+		change_state(states.IDLE, "idle")
+
+#endregion

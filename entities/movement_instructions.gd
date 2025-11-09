@@ -2,6 +2,9 @@
 extends Node
 class_name MovementInstructions
 
+@export_category("State Machine")
+@export var initial_state: states
+
 @export_category("Physics")
 @export var move_speed: float
 @export var accel: float
@@ -13,7 +16,6 @@ class_name MovementInstructions
 @export var max_action_charges: int = 1
 @export var sprite: AnimatedSprite2D
 
-var parent_on_floor: bool = true
 var velocity: Vector2 = Vector2.ZERO
 var active: bool = false
 var current_action_charges: int = 1
@@ -28,7 +30,7 @@ enum states {
 	FALLING
 }
 
-var current_state := states.IDLE
+var current_state: states
 
 
 
@@ -49,16 +51,10 @@ func _physics_process(_delta: float) -> void:
 				action(_delta)
 			states.MOVING:
 				move(_delta)
-			states.STOPPING:
-				slow()
+			states.FALLING:
+				falling()
 			states.IDLE:
 				idle()
-	#else:
-		#velocity = Vector2.ZERO
-
-func get_direction() -> Vector2:
-	var _direction = Vector2.ZERO
-	return _direction
 
 func get_velocity() -> Vector2:
 	return velocity
@@ -69,19 +65,16 @@ func get_state() -> states:
 func get_state_name() -> String:
 	return states.find_key(current_state)
 
-func slow() -> void:
-	if velocity.x != 0:
-		velocity.x -= decel * get_direction().x
-
 func fall() -> void:
 	velocity.y += gravity
 	if velocity.y > terminal_velocity:
 		velocity.y = terminal_velocity
 
+func falling() -> void:
+	pass
+
 func idle() -> void:
-	velocity = velocity.move_toward(Vector2.ZERO, decel)
-	if velocity == Vector2.ZERO:
-		sprite.play("idle")
+	pass
 
 func action(_delta: float) -> void:
 	pass
@@ -99,6 +92,13 @@ func on_floor_check() -> bool:
 		check = false
 		
 	return check
+
+func change_state(new_state: states, _animation: String = "none") -> void:
+	current_state = new_state
+	if _animation == "none":
+		pass
+	else:
+		sprite.play(_animation)
 
 @abstract func move(_delta: float) -> void
 

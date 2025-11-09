@@ -78,6 +78,7 @@ func fade_out() -> void:
 		
 	var tween = create_tween()
 	tween.tween_property(current_stage, "modulate", Color(1,1,1,0), 0.25)
+	tween.parallel().tween_property(restart_button, "modulate", Color(1,1,1,0), 0.25)
 	tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,0), 0.25)
 	await tween.finished
 
@@ -87,6 +88,7 @@ func fade_in() -> void:
 	
 	var tween = create_tween()
 	tween.tween_property(current_stage, "modulate", Color(1,1,1,1), 0.25)
+	tween.parallel().tween_property(restart_button, "modulate", Color(1,1,1,1), 0.25)
 	tween.parallel().tween_property(player_reference, "modulate", Color(1,1,1,1), 0.25)
 
 func increment_time() -> void:
@@ -131,6 +133,7 @@ func game_end() -> void:
 	timer.stop()
 	game_end_msg.position = get_viewport_rect().size / 2
 	fade_out()
+	restart_button.disabled = true
 	
 	var tween = create_tween()
 	tween.tween_property(game_end_msg, "modulate", Color(1,1,1,1), 3)
