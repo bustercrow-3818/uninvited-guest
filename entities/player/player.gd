@@ -54,6 +54,7 @@ func possess_target() -> void:
 		if collision is Entity:
 			possession_sound.play()
 			move_instructions.direction = Vector2.ZERO
+			move_instructions.change_state(move_instructions.states.IDLE, "idle")
 			move_instructions.active = false
 			switch_pov(collision)
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
