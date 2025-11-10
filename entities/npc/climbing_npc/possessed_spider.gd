@@ -6,7 +6,7 @@ var original_rotation
 func initialize() -> void:
 	await ready
 	parent = get_parent()
-	original_rotation = parent.rotation_degrees
+	original_rotation = parent.global_rotation_degrees
 
 func process_state() -> void:
 	if velocity.x > 0:
@@ -69,9 +69,9 @@ func falling() -> void:
 		change_state(states.ACTION, "jump")
 	elif parent.is_on_wall():
 		if parent.get_last_slide_collision().get_normal().x > 0:
-			parent.rotate(deg_to_rad(original_rotation))
+			parent.rotate(deg_to_rad(90))
 		else:
-			parent.rotate(deg_to_rad(original_rotation))
+			parent.rotate(deg_to_rad(270))
 		change_state(states.CLINGING, "idle")
 	elif on_floor_check() == true:
 		current_action_charges = max_action_charges
@@ -92,15 +92,20 @@ func climbing() -> void:
 		velocity.x = get_direction().x * jump_speed
 		parent.rotation_degrees -= original_rotation
 		change_state(states.FALLING, "jump")
+	elif parent.is_on_wall() == false:
+		sprite.rotation_degrees -= original_rotation
+		change_state(states.FALLING, "jump")
 
 func clinging() -> void:
 	velocity = Vector2.ZERO
 	
-	
 	if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("down"):
-		change_state(states.CLIMBING, "walk")
+		change_state(states.CLIMBING, "idle")
 	elif Input.is_action_just_pressed("action"):
 		velocity.x = get_direction().x * jump_speed
+		sprite.rotation_degrees -= original_rotation
+		change_state(states.FALLING, "jump")
+	elif parent.is_on_wall() == false:
 		sprite.rotation_degrees -= original_rotation
 		change_state(states.FALLING, "jump")
 
