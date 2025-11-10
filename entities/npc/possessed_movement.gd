@@ -4,14 +4,12 @@ class_name PossessedMovement
 @export var jump_speed: float
 @export var jump_sound: AudioStreamPlayer2D
 
-func get_direction() -> float:
-	var dir: float = Input.get_axis("left", "right")
+func get_direction() -> Vector2:
+	var dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	
 	return dir
 
 func process_state() -> void:
-	if on_floor_check() == false:
-		fall()
 	
 	if velocity.x > 0:
 		sprite.flip_h = false
@@ -44,7 +42,7 @@ func idle() -> void:
 		change_state(states.MOVING, "walk")
 
 func move(_delta: float) -> void:
-	direction.x = get_direction()
+	direction.x = get_direction().x
 	velocity.x = move_toward(velocity.x, move_speed * direction.x, accel)
 	
 	if Input.is_action_just_pressed("action"):
@@ -55,7 +53,8 @@ func move(_delta: float) -> void:
 		change_state(states.IDLE, "idle")
 
 func falling() -> void:
-	direction.x = get_direction()
+	fall()
+	direction.x = get_direction().x
 	velocity.x = move_toward(velocity.x, move_speed * direction.x, accel)
 	
 	if Input.is_action_just_pressed("action") and current_action_charges > 0:

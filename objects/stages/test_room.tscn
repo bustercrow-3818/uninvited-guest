@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cwjvq32vo5lp4"]
+[gd_scene load_steps=31 format=4 uid="uid://cwjvq32vo5lp4"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_m1ai2"]
 [ext_resource type="Script" uid="uid://38lcsnhe1sh6" path="res://objects/stages/initialize_everything.gd" id="1_ppf7i"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="10_ourc5"]
 [ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker/ghost_blocker_v.tscn" id="11_ddt3n"]
 [ext_resource type="PackedScene" uid="uid://bumq0usmd6ary" path="res://objects/props/switch.tscn" id="12_7664r"]
+[ext_resource type="Script" uid="uid://b4ta10k41kdl7" path="res://entities/npc/climbing_npc/possessed_spider.gd" id="12_fjtwo"]
 [ext_resource type="PackedScene" uid="uid://fi5jgqobqjlq" path="res://objects/props/ghost_blocker/ghost_blocker_h.tscn" id="13_mvp33"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="14_4io8y"]
 [ext_resource type="Script" uid="uid://wdlvbhpgb3cp" path="res://objects/props/ghost_blocker/test_blocker.gd" id="15_4pk15"]
@@ -1215,6 +1216,21 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_h0uhq")
 
+[sub_resource type="Animation" id="Animation_gvh7c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_fjtwo"]
 resource_name = "rotate"
 length = 15.0
@@ -1230,21 +1246,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 3.141592653589793, 6.283185307179586]
-}
-
-[sub_resource type="Animation" id="Animation_gvh7c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5cpa"]
@@ -1284,6 +1285,18 @@ position = Vector2(214.00002, 83)
 [node name="npc" parent="stage_template" instance=ExtResource("10_ourc5")]
 position = Vector2(80, 260)
 
+[node name="PossessedSpider" type="Node" parent="stage_template/npc" node_paths=PackedStringArray("jump_sound", "sprite")]
+script = ExtResource("12_fjtwo")
+jump_speed = 100.0
+jump_sound = NodePath("../jump_sound")
+move_speed = 75.0
+accel = 15.0
+decel = 4.0
+gravity = 7.5
+terminal_velocity = 400.0
+sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://b4ta10k41kdl7"
+
 [node name="ghost_blocker" parent="stage_template" instance=ExtResource("11_ddt3n")]
 position = Vector2(137, 207)
 
@@ -1307,4 +1320,5 @@ libraries = {
 [node name="player" parent="stage_template" instance=ExtResource("14_4io8y")]
 position = Vector2(335, 237)
 
+[editable path="stage_template/npc"]
 [editable path="stage_template/ghost_blocker_v"]

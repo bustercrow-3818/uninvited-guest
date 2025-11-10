@@ -6,7 +6,10 @@ class_name NPC
 @export var sprite: AnimatedSprite2D
 @export var animator: AnimationPlayer
 
-var modes: Dictionary
+@export var npc_movement: MovementInstructions
+@export var possessed_movement: MovementInstructions
+
+@export var modes: Dictionary[String, MovementInstructions]
 
 
 func _physics_process(_delta: float) -> void:
@@ -17,27 +20,40 @@ func _physics_process(_delta: float) -> void:
 		move_instructions.reverse_direction()
 
 func connect_signals() -> void:
-	SignalBus.possessed.connect(switch_mode)
-	SignalBus.release.connect(switch_mode)
+	SignalBus.possessed.connect(possessed)
+	SignalBus.release.connect(released)
 
 func initialize() -> void:
 	for i in get_children():
 		if i is MovementInstructions:
-			modes[i.name] = i
+			i.initialize()
 	move_instructions.active = true
-	move_instructions.initialize()
 	connect_signals()
 
-func switch_mode(body: Node, new_mode: String) -> void:
+func possessed(body: Node, _new_mode: String) -> void:
+	if body == self:
+		move_instructions.active = false
+		animator.play("possession")
+		move_instructions = possessed_movement
+		move_instructions.active = true
+	pass
+	
+func released(body: Node, _new_mode: String) -> void:
+	if body == self:
+		move_instructions.active = false
+		animator.play("possession")
+		move_instructions = npc_movement
+		move_instructions.active = true
+		
+		if move_instructions.has_method("restart_timer"):
+			move_instructions.restart_timer()
+
+func switch_mode(body: Node, _new_mode: String) -> void:
 	if body != self:
 		return
 		
-	if move_instructions == modes[new_mode]:
+	if move_instructions == modes[_new_mode]:
 		pass
 	else:
-		move_instructions.active = false
-		animator.play("possession")
-		move_instructions = modes[new_mode]
-		move_instructions.active = true
-		if move_instructions.has_method("restart_timer"):
-			move_instructions.restart_timer()
+		pass
+		

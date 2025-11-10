@@ -20,6 +20,7 @@ var velocity: Vector2 = Vector2.ZERO
 var active: bool = false
 var current_action_charges: int = 1
 var direction: Vector2
+var parent: CharacterBody2D
 
 enum states {
 	IDLE,
@@ -27,7 +28,9 @@ enum states {
 	MOVING,
 	VOID,
 	STOPPING,
-	FALLING
+	FALLING,
+	CLINGING,
+	CLIMBING
 }
 
 var current_state: states
@@ -35,7 +38,6 @@ var current_state: states
 
 
 func initialize() -> void:
-	
 	pass
 	
 func connect_signals() -> void:
@@ -83,12 +85,12 @@ func restore_action_charges() -> void:
 	pass
 
 func on_floor_check() -> bool:
-	var parent: CharacterBody2D = get_parent()
+	var _parent: CharacterBody2D = get_parent()
 	var check: bool
 	
-	if parent.is_on_floor() == true:
+	if _parent.is_on_floor() == true:
 		check = true
-	elif parent.is_on_floor() == false:
+	elif _parent.is_on_floor() == false:
 		check = false
 		
 	return check

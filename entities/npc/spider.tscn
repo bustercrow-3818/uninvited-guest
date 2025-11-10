@@ -1,0 +1,264 @@
+[gd_scene load_steps=25 format=3 uid="uid://by446mxo3nfmg"]
+
+[ext_resource type="Script" uid="uid://dp3vx4bhsowe1" path="res://entities/npc/npc.gd" id="1_10dof"]
+[ext_resource type="Texture2D" uid="uid://byir2vjaqibhg" path="res://assets/spider/Spider Sprite Sheet.png" id="2_djdf6"]
+[ext_resource type="Script" uid="uid://c0ck0sdchwws4" path="res://entities/npc/npc_movement.gd" id="5_25o8a"]
+[ext_resource type="AudioStream" uid="uid://31w6hruq074m" path="res://assets/sound/npc_jump.wav" id="7_3fjcu"]
+[ext_resource type="Script" uid="uid://b4ta10k41kdl7" path="res://entities/npc/climbing_npc/possessed_spider.gd" id="8_wd6s6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lyip"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64wro"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10dof"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxkba"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ptb2"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djdf6"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpm3i"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25o8a"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xohpn"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3kj4"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkvpi"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg6da"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oe32"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwake"]
+atlas = ExtResource("2_djdf6")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_js3qf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lyip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64wro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10dof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxkba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ptb2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djdf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpm3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25o8a")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xohpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3kj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkvpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg6da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oe32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwake")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djdf6"]
+radius = 30.0
+
+[sub_resource type="Animation" id="Animation_57jtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -92)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_hiv41"]
+resource_name = "possession"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -92), Vector2(0, -124), Vector2(0, -92)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 6), Vector2(4, 8), Vector2(6, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37o05"]
+_data = {
+&"RESET": SubResource("Animation_57jtd"),
+&"possession": SubResource("Animation_hiv41")
+}
+
+[node name="spider" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animator", "npc_movement", "possessed_movement", "move_instructions")]
+scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 3
+platform_on_leave = 2
+platform_floor_layers = 4294967040
+platform_wall_layers = 3
+script = ExtResource("1_10dof")
+sprite = NodePath("AnimatedSprite2D")
+animator = NodePath("AnimationPlayer")
+npc_movement = NodePath("NPCMovement")
+possessed_movement = NodePath("PossessedSpider")
+move_instructions = NodePath("NPCMovement")
+metadata/_custom_type_script = "uid://b8jd64csh3kd3"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -92)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_js3qf")
+animation = &"jump"
+autoplay = "idle"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_djdf6")
+
+[node name="PossessedSpider" type="Node" parent="." node_paths=PackedStringArray("jump_sound", "sprite")]
+script = ExtResource("8_wd6s6")
+jump_speed = 175.0
+jump_sound = NodePath("../jump_sound")
+move_speed = 70.0
+accel = 15.0
+decel = 4.0
+gravity = 7.5
+terminal_velocity = 400.0
+sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://b4ta10k41kdl7"
+
+[node name="NPCMovement" type="Node" parent="." node_paths=PackedStringArray("walk_timer", "pause_timer", "debug", "sprite")]
+script = ExtResource("5_25o8a")
+walk_timer = NodePath("walk_timer")
+pause_timer = NodePath("pause_timer")
+walk_interval = Vector2i(2, 3)
+active_time_range = Vector2(1, 2)
+debug = NodePath("../Label")
+move_speed = 60.0
+decel = 5.0
+gravity = 2.0
+terminal_velocity = 300.0
+sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://c0ck0sdchwws4"
+
+[node name="walk_timer" type="Timer" parent="NPCMovement"]
+one_shot = true
+
+[node name="pause_timer" type="Timer" parent="NPCMovement"]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 96.0
+offset_top = -32.0
+offset_right = 136.0
+offset_bottom = -9.0
+text = "test"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_37o05")
+}
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3fjcu")
