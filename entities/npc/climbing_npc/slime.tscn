@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dfp3e7f5q8ds7" path="res://assets/Slime/SlimeAssets/Assets/BouncingSpritesheet.png" id="3_64wro"]
 [ext_resource type="Script" uid="uid://c0ck0sdchwws4" path="res://entities/npc/npc_movement.gd" id="5_25o8a"]
 [ext_resource type="AudioStream" uid="uid://31w6hruq074m" path="res://assets/sound/npc_jump.wav" id="7_3fjcu"]
-[ext_resource type="Script" uid="uid://b4ta10k41kdl7" path="res://entities/npc/climbing_npc/possessed_spider.gd" id="8_wd6s6"]
+[ext_resource type="Script" uid="uid://b4ta10k41kdl7" path="res://entities/npc/climbing_npc/possessed_slime.gd" id="8_wd6s6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10dof"]
 atlas = ExtResource("2_3lyip")
@@ -173,7 +173,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -12)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -201,7 +201,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -32), Vector2(0, 0)]
+"values": [Vector2(0, -12), Vector2(0, -44), Vector2(0, -12)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -222,7 +222,7 @@ _data = {
 &"possession": SubResource("Animation_hiv41")
 }
 
-[node name="spider" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animator", "npc_movement", "possessed_movement", "move_instructions")]
+[node name="slime" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animator", "npc_movement", "possessed_movement", "move_instructions")]
 scale = Vector2(0.25, 0.25)
 collision_layer = 3
 collision_mask = 3
@@ -237,22 +237,23 @@ move_instructions = NodePath("NPCMovement")
 metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.6862745)
+modulate = Color(1, 1, 1, 0.50980395)
 z_index = 1
+position = Vector2(0, -12)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_js3qf")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
+frame_progress = 0.5743911
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_djdf6")
 
 [node name="PossessedSpider" type="Node" parent="." node_paths=PackedStringArray("jump_sound", "sprite")]
 script = ExtResource("8_wd6s6")
 jump_speed = 175.0
 jump_sound = NodePath("../jump_sound")
-move_speed = 70.0
+move_speed = 50.0
 accel = 15.0
 decel = 4.0
 gravity = 7.5

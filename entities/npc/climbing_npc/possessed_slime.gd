@@ -1,12 +1,13 @@
 extends PossessedMovement
-class_name PossessedSpider
+class_name PossessedSlime
 
 var original_rotation
+var last_rotation: float
 
 func initialize() -> void:
 	await ready
 	parent = get_parent()
-	original_rotation = parent.global_rotation_degrees
+	original_rotation = parent.rotation_degrees
 
 func process_state() -> void:
 	if velocity.x > 0:
@@ -68,10 +69,12 @@ func falling() -> void:
 	if Input.is_action_just_pressed("action") and current_action_charges > 0:
 		change_state(states.ACTION, "jump")
 	elif parent.is_on_wall():
-		if parent.get_last_slide_collision().get_normal().x > 0:
-			parent.rotate(deg_to_rad(90))
+		if parent.get_last_slide_collision().get_position().x > parent.position.x:
+			last_rotation = 270
+			parent.rotate(deg_to_rad(last_rotation))
 		else:
-			parent.rotate(deg_to_rad(270))
+			last_rotation = 90
+			parent.rotate(deg_to_rad(last_rotation))
 		change_state(states.CLINGING, "idle")
 	elif on_floor_check() == true:
 		current_action_charges = max_action_charges
@@ -89,11 +92,14 @@ func climbing() -> void:
 	if direction.y == 0:
 		change_state(states.CLINGING, "idle")
 	elif Input.is_action_just_pressed("action"):
-		velocity.x = get_direction().x * jump_speed
-		parent.rotation_degrees -= original_rotation
+		direction.y = Input.get_axis("up", "down")
+		direction.x = parent.get_wall_normal().x
+		velocity = direction * jump_speed
+		parent.rotation_degrees -= last_rotation
 		change_state(states.FALLING, "jump")
 	elif parent.is_on_wall() == false:
-		sprite.rotation_degrees -= original_rotation
+		velocity = get_direction() * jump_speed
+		parent.rotation_degrees -= last_rotation
 		change_state(states.FALLING, "jump")
 
 func clinging() -> void:
@@ -102,11 +108,14 @@ func clinging() -> void:
 	if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("down"):
 		change_state(states.CLIMBING, "idle")
 	elif Input.is_action_just_pressed("action"):
-		velocity.x = get_direction().x * jump_speed
-		sprite.rotation_degrees -= original_rotation
+		direction.y = Input.get_axis("up", "down")
+		direction.x = parent.get_wall_normal().x
+		velocity = direction * jump_speed
+		parent.rotation_degrees -= last_rotation
 		change_state(states.FALLING, "jump")
 	elif parent.is_on_wall() == false:
-		sprite.rotation_degrees -= original_rotation
+		velocity = get_direction() * jump_speed
+		parent.rotation_degrees -= last_rotation
 		change_state(states.FALLING, "jump")
 
 #endregion
