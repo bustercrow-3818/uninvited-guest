@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwfe0y8a1ij2y"]
+
+[ext_resource type="Texture2D" uid="uid://dt7h7avk70svy" path="res://assets/input-prompts-1.1.1/input-prompts-1.1.1/256_png/pc/dark/layout/_/ws.png" id="1_7kiwf"]
+
+[node name="climb_sign_2" type="Node2D"]
+modulate = Color(1, 1, 1, 0.6862745)
+scale = Vector2(0.25, 0.25)
+
+[node name="Ws" type="Sprite2D" parent="."]
+texture = ExtResource("1_7kiwf")

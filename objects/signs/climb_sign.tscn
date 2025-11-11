@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlpm8agambrpl"]
+
+[ext_resource type="Texture2D" uid="uid://bpu7if5qp0u61" path="res://assets/input-prompts-1.1.1/input-prompts-1.1.1/256_png/pc/dark/key/special/_/space.png" id="1_n4rnk"]
+[ext_resource type="Texture2D" uid="uid://ch7v3udh7s7v1" path="res://assets/input-prompts-1.1.1/input-prompts-1.1.1/256_png/pc/dark/layout/_/d.png" id="2_bgp2y"]
+
+[node name="possession_key_sign" type="Node2D"]
+modulate = Color(1, 1, 1, 0.6862745)
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n4rnk")
+
+[node name="D" type="Sprite2D" parent="."]
+position = Vector2(288, -32)
+texture = ExtResource("2_bgp2y")

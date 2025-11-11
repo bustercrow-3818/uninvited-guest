@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=27 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -18,7 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cusq5t7ifkb13" path="res://objects/stages/regular/jump_stages/stage_7.tscn" id="13_03ig6"]
 [ext_resource type="FontFile" uid="uid://38kkkxjrqj5u" path="res://assets/ZeroCool.otf" id="13_io3fq"]
 [ext_resource type="PackedScene" uid="uid://b5ygaje3uy0jg" path="res://objects/stages/regular/jump_stages/stage_8.tscn" id="14_4s2s4"]
-[ext_resource type="PackedScene" uid="uid://xjbj0tht1ig0" path="res://objects/stages/stage_9.tscn" id="15_jalkb"]
+[ext_resource type="PackedScene" uid="uid://xjbj0tht1ig0" path="res://objects/stages/regular/slime_stages/stage_9.tscn" id="15_jalkb"]
+[ext_resource type="PackedScene" uid="uid://ro0p1jfxs05s" path="res://objects/stages/regular/slime_stages/stage_10.tscn" id="16_26vh2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
 
@@ -50,7 +51,7 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="Theme" id="Theme_26vh2"]
+[sub_resource type="Theme" id="Theme_jalkb"]
 resource_local_to_scene = true
 Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
 Button/fonts/font = ExtResource("13_io3fq")
@@ -76,7 +77,8 @@ stages = Dictionary[int, PackedScene]({
 9: ExtResource("12_3ukea"),
 10: ExtResource("13_03ig6"),
 11: ExtResource("14_4s2s4"),
-12: ExtResource("15_jalkb")
+12: ExtResource("15_jalkb"),
+13: ExtResource("16_26vh2")
 })
 black_screen = NodePath("black")
 timer = NodePath("Timer")
@@ -111,7 +113,7 @@ offset_left = 1152.0
 offset_top = 88.0
 offset_right = 1227.0
 offset_bottom = 163.0
-theme = SubResource("Theme_26vh2")
+theme = SubResource("Theme_jalkb")
 text = "Play again"
 
 [node name="game_end" type="Label" parent="CanvasLayer"]
