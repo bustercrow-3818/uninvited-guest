@@ -7,7 +7,11 @@ var last_rotation: float
 func initialize() -> void:
 	await ready
 	parent = get_parent()
+	connect_signals()
 	original_rotation = parent.rotation_degrees
+
+func connect_signals() -> void:
+	pass
 
 func process_state() -> void:
 	if velocity.x > 0:
@@ -33,6 +37,14 @@ func _physics_process(_delta: float) -> void:
 			states.IDLE:
 				idle()
 
+func reverse_rotation() -> void:
+	parent.rotation_degrees -= last_rotation
+
+func released() -> void:
+	current_state = states.FALLING
+	if parent.rotation_degrees != original_rotation:
+		reverse_rotation()
+
 #region state functions
 func action(_delta) -> void:
 	jump_sound.play()
@@ -47,6 +59,7 @@ func idle() -> void:
 	
 	if Input.is_action_just_pressed("action"):
 		change_state(states.ACTION, "jump")
+	
 	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		change_state(states.MOVING, "walk")
 
@@ -56,8 +69,10 @@ func move(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("action"):
 		change_state(states.ACTION, "jump")
+	
 	elif on_floor_check() == false:
 		change_state(states.FALLING, "jump")
+	
 	elif on_floor_check() == true and direction.x == 0:
 		change_state(states.IDLE, "idle")
 
@@ -68,6 +83,7 @@ func falling() -> void:
 	
 	if Input.is_action_just_pressed("action") and current_action_charges > 0:
 		change_state(states.ACTION, "jump")
+	
 	elif parent.is_on_wall():
 		if parent.get_last_slide_collision().get_position().x > parent.position.x:
 			last_rotation = 270
@@ -76,6 +92,7 @@ func falling() -> void:
 			last_rotation = 90
 			parent.rotate(deg_to_rad(last_rotation))
 		change_state(states.CLINGING, "idle")
+	
 	elif on_floor_check() == true:
 		current_action_charges = max_action_charges
 		change_state(states.IDLE, "idle")
@@ -91,12 +108,14 @@ func climbing() -> void:
 	
 	if direction.y == 0:
 		change_state(states.CLINGING, "idle")
+	
 	elif Input.is_action_just_pressed("action"):
 		direction.y = Input.get_axis("up", "down")
 		direction.x = parent.get_wall_normal().x
 		velocity = direction * jump_speed
 		parent.rotation_degrees -= last_rotation
 		change_state(states.FALLING, "jump")
+	
 	elif parent.is_on_wall() == false:
 		velocity = get_direction() * jump_speed
 		parent.rotation_degrees -= last_rotation
@@ -107,15 +126,17 @@ func clinging() -> void:
 	
 	if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("down"):
 		change_state(states.CLIMBING, "idle")
+	
 	elif Input.is_action_just_pressed("action"):
 		direction.y = Input.get_axis("up", "down")
 		direction.x = parent.get_wall_normal().x
 		velocity = direction * jump_speed
-		parent.rotation_degrees -= last_rotation
+		reverse_rotation()
 		change_state(states.FALLING, "jump")
+
 	elif parent.is_on_wall() == false:
 		velocity = get_direction() * jump_speed
-		parent.rotation_degrees -= last_rotation
+		reverse_rotation()
 		change_state(states.FALLING, "jump")
 
 #endregion

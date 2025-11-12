@@ -21,8 +21,10 @@ func initialize() -> void:
 	current_state = initial_state
 
 func connect_signals() -> void:
-	
 	pass
+
+func released():
+	current_state = states.FALLING
 
 #region state functions
 func action(_delta) -> void:

@@ -41,6 +41,7 @@ func possessed(body: Node, _new_mode: String) -> void:
 func released(body: Node, _new_mode: String) -> void:
 	if body == self:
 		move_instructions.active = false
+		move_instructions.released()
 		animator.play("possession")
 		move_instructions = npc_movement
 		move_instructions.active = true

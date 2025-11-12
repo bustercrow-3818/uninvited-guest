@@ -158,8 +158,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_djdf6"]
-radius = 30.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spe7v"]
+size = Vector2(46, 46)
 
 [sub_resource type="Animation" id="Animation_57jtd"]
 length = 0.001
@@ -247,7 +247,7 @@ autoplay = "idle"
 frame_progress = 0.5743911
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_djdf6")
+shape = SubResource("RectangleShape2D_spe7v")
 
 [node name="PossessedSpider" type="Node" parent="." node_paths=PackedStringArray("jump_sound", "sprite")]
 script = ExtResource("8_wd6s6")

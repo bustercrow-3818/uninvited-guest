@@ -5,8 +5,8 @@ class_name Blocker
 @export var wall: Array[Sprite2D]
 
 @export_category("Default State")
-@export var active: bool = false
-@export var inverted: bool = false
+@export var active: bool = false ## Barrier default state when the stage begins.
+@export var inverted: bool = false ## If false, NPCs turn off connected barriers and ghost turns them on. If true, NPCs turn on connected barriers and ghost turns them off.
 
 @export_category("Wall Sprites")
 @export var blue_wall: Texture2D
