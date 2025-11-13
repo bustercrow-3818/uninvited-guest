@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://t1jd7of4xcjy"]
+[gd_scene load_steps=23 format=4 uid="uid://t1jd7of4xcjy"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_la88n"]
 [ext_resource type="Script" uid="uid://c0pg6113u4hsb" path="res://objects/stages/stage_template.gd" id="2_5m3po"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://b6by0hr2yqoun" path="res://entities/npc/npc.tscn" id="10_84lkl"]
 [ext_resource type="PackedScene" uid="uid://ce2fn6gxtfn27" path="res://objects/signs/possession_key_sign.tscn" id="11_g8t0i"]
 [ext_resource type="PackedScene" uid="uid://da7ivxgpm6j6q" path="res://objects/signs/release_key_sign.tscn" id="12_la88n"]
-[ext_resource type="PackedScene" uid="uid://by446mxo3nfmg" path="res://entities/npc/climbing_npc/slime.tscn" id="13_gijqe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
 texture = ExtResource("1_la88n")
@@ -1228,6 +1227,3 @@ position = Vector2(206, 218)
 
 [node name="release_key_sign" parent="." instance=ExtResource("12_la88n")]
 position = Vector2(256, 218)
-
-[node name="slime" parent="." instance=ExtResource("13_gijqe")]
-position = Vector2(107, 258)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://yoeaqbxrmkq"]
+[gd_scene load_steps=23 format=4 uid="uid://yoeaqbxrmkq"]
 
 [ext_resource type="Texture2D" uid="uid://dtbif5xao3q6h" path="res://assets/Graveyard [16x16]/Tiles/Ground_Tiles.png" id="1_hndbx"]
 [ext_resource type="Script" uid="uid://c0pg6113u4hsb" path="res://objects/stages/stage_template.gd" id="2_tge5m"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://d06cy40x0ormd" path="res://objects/props/ghost_blocker/ghost_blocker_v.tscn" id="11_wwfqe"]
 [ext_resource type="PackedScene" uid="uid://bumq0usmd6ary" path="res://objects/props/switch.tscn" id="12_yeu4j"]
 [ext_resource type="PackedScene" uid="uid://by446mxo3nfmg" path="res://entities/npc/climbing_npc/slime.tscn" id="13_jsywq"]
-[ext_resource type="PackedScene" uid="uid://fi5jgqobqjlq" path="res://objects/props/ghost_blocker/ghost_blocker_h.tscn" id="13_pj1ui"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
 texture = ExtResource("1_hndbx")
@@ -1234,26 +1233,20 @@ position = Vector2(364, 251)
 position = Vector2(184, 273)
 active = true
 
-[node name="blocker_t" parent="." instance=ExtResource("13_pj1ui")]
-position = Vector2(223, 113)
-inverted = true
+[node name="blocker_br" parent="." instance=ExtResource("11_wwfqe")]
+position = Vector2(305, 209)
+active = true
 
-[node name="lever_b" parent="." node_paths=PackedStringArray("sister_switch", "controlled_barrier") instance=ExtResource("12_yeu4j")]
+[node name="lever_b" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_yeu4j")]
 position = Vector2(151, 208)
-sister_switch = NodePath("../lever_tl")
-controlled_barrier = [NodePath("../blocker_b"), NodePath("../blocker_t")]
-
-[node name="lever_tr" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_yeu4j")]
-position = Vector2(367, 96)
 controlled_barrier = [NodePath("../blocker_b")]
 
-[node name="lever_tl" parent="." node_paths=PackedStringArray("sister_switch") instance=ExtResource("12_yeu4j")]
+[node name="lever_tl" parent="." node_paths=PackedStringArray("controlled_barrier") instance=ExtResource("12_yeu4j")]
 position = Vector2(82, 96)
-sister_switch = NodePath("../lever_b")
+controlled_barrier = [NodePath("../blocker_br")]
 
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(84, 183)
 
 [node name="slime" parent="." instance=ExtResource("13_jsywq")]
 position = Vector2(92, 259)
-motion_mode = 1

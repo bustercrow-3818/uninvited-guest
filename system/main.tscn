@@ -52,7 +52,7 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="Theme" id="Theme_26vh2"]
+[sub_resource type="Theme" id="Theme_0jj5d"]
 resource_local_to_scene = true
 Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
 Button/fonts/font = ExtResource("13_io3fq")
@@ -64,7 +64,6 @@ Button/styles/pressed = SubResource("StyleBoxFlat_sfy1f")
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "timer", "restart_button", "bgm", "game_clock", "game_end_msg")]
 script = ExtResource("1_7am6p")
-starting_stage = 14
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("7_7rmty"),
@@ -116,7 +115,7 @@ offset_left = 1152.0
 offset_top = 88.0
 offset_right = 1227.0
 offset_bottom = 163.0
-theme = SubResource("Theme_26vh2")
+theme = SubResource("Theme_0jj5d")
 text = "Play again"
 
 [node name="game_end" type="Label" parent="CanvasLayer"]

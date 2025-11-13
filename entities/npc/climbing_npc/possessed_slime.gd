@@ -42,8 +42,7 @@ func reverse_rotation() -> void:
 
 func released() -> void:
 	current_state = states.FALLING
-	if parent.rotation_degrees != original_rotation:
-		reverse_rotation()
+	parent.rotation_degrees = original_rotation
 
 #region state functions
 func action(_delta) -> void:

@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://xj6c5bhsc8le"]
+
+[ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="1_hq3rh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hq3rh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq3rh"]
+bg_color = Color(0, 0.54509807, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6509804, 0.16470589, 0.09411765, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukitm"]
+bg_color = Color(0, 0.30794686, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6509804, 0.16470589, 0.09411765, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxubt"]
+bg_color = Color(0, 0.30980393, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6509804, 0.16470589, 0.09411765, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="Theme_ukitm"]
+Button/font_sizes/font_size = 16
+Button/styles/focus = SubResource("StyleBoxEmpty_hq3rh")
+Button/styles/hover = SubResource("StyleBoxFlat_hq3rh")
+Button/styles/normal = SubResource("StyleBoxFlat_ukitm")
+Button/styles/pressed = SubResource("StyleBoxFlat_xxubt")
+
+[node name="game_end" type="Label"]
+anchors_preset = -1
+anchor_left = 0.002
+anchor_right = 0.002
+offset_left = -22.048
+offset_top = -16.0
+offset_right = 29.952
+offset_bottom = 11.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(26, 13.5)
+theme = ExtResource("1_hq3rh")
+text = "R.I.P."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 6.3333325
+offset_top = 46.333336
+offset_right = 81.333336
+offset_bottom = 73.333336
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+theme = SubResource("Theme_ukitm")
+text = "Restart"
