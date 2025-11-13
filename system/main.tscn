@@ -64,6 +64,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_sfy1f")
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "timer", "restart_button", "bgm", "game_clock", "game_end_msg")]
 script = ExtResource("1_7am6p")
+starting_stage = 14
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("7_7rmty"),

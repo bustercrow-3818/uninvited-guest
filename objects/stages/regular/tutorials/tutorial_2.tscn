@@ -1220,7 +1220,7 @@ position = Vector2(370, 251.00002)
 position = Vector2(208, 260)
 
 [node name="spawn" type="Node2D" parent="."]
-position = Vector2(74, 253)
+position = Vector2(107, 215)
 
 [node name="possession_key_sign" parent="." instance=ExtResource("11_g8t0i")]
 position = Vector2(206, 218)

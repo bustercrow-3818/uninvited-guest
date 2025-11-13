@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bq548lao1n5hu" path="res://assets/Graveyard [16x16]/Props&Objects/Trees.png" id="7_gwrj3"]
 [ext_resource type="Texture2D" uid="uid://dp0naiawibuud" path="res://assets/Graveyard [16x16]/Tiles/Back_Tiles.png" id="8_t1t6r"]
 [ext_resource type="PackedScene" uid="uid://b3m04gont7f1n" path="res://objects/interactables/grave.tscn" id="9_phwwi"]
-[ext_resource type="Theme" uid="uid://ce7d4s5why0ww" path="res://system/themes/title.tres" id="10_638hx"]
 [ext_resource type="PackedScene" uid="uid://bfn1fcem84ils" path="res://objects/signs/movement_keys_sign.tscn" id="11_dlbpf"]
+[ext_resource type="PackedScene" uid="uid://dkyixv30v1lt1" path="res://rich_text_label.tscn" id="11_ic8kn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hre5"]
 texture = ExtResource("1_x0hwt")
@@ -1219,15 +1219,16 @@ position = Vector2(225, 251)
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(95, 250)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 108.0
-offset_top = 146.0
-offset_right = 225.0
-offset_bottom = 173.0
-scale = Vector2(2, 2)
-theme = ExtResource("10_638hx")
-text = "HAUNTLET"
-
 [node name="movement_keys_sign" parent="." instance=ExtResource("11_dlbpf")]
 position = Vector2(75, 240)
 scale = Vector2(0.125, 0.125)
+
+[node name="RichTextLabel" parent="." instance=ExtResource("11_ic8kn")]
+modulate = Color(0.2946506, 0.65099865, 0.65009993, 0.6313726)
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 224.0
+offset_bottom = 160.0
+text = "[wave]HAUNTLET[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
