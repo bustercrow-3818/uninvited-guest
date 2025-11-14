@@ -237,7 +237,6 @@ move_instructions = NodePath("NPCMovement")
 metadata/_custom_type_script = "uid://b8jd64csh3kd3"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.50980395)
 z_index = 1
 position = Vector2(0, -12)
 scale = Vector2(6, 6)

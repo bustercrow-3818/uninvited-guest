@@ -11,6 +11,7 @@ func connect_signals() -> void:
 	detection.body_entered.connect(lay_to_rest)
 
 func lay_to_rest(body: Node) -> void:
-	SignalBus.lay_to_rest.emit(body)
-	sound.play()
-	SignalBus.location_announce.emit(position)
+	if body is Player:
+		SignalBus.lay_to_rest.emit(body)
+		sound.play()
+		SignalBus.location_announce.emit(position)

@@ -1,6 +1,10 @@
 extends Node2D
 
+@export_category("Debug Tools")
 @export var starting_stage: int
+
+@export_category("Node References")
+#region node references
 @export var player: PackedScene
 @export var stages: Dictionary[int, PackedScene]
 @export var black_screen: Polygon2D
@@ -9,13 +13,16 @@ extends Node2D
 @export var bgm: AudioStreamPlayer2D
 @export var game_clock: Label
 @export var game_end_msg: Label
+#endregion
 
+#region internal variables
 var player_reference: Player
-var current_stage: TileMapLayer
+var current_stage: Stage
 var current_stage_number: int = 0
 var elapsed_seconds: int = 0
 var elapsed_minutes: int = 0
 var elapsed_hours: int = 0
+#endregion
 
 func _ready() -> void:
 	initialize()
@@ -23,12 +30,13 @@ func _ready() -> void:
 func initialize() -> void:
 	connect_signals()
 	load_stage(starting_stage, true)
-	
+	current_stage_number = starting_stage
+
 func connect_signals() -> void:
 	SignalBus.lay_to_rest.connect(stage_transition)
 	restart_button.pressed.connect(restart_stage)
 	timer.timeout.connect(increment_time)
-	
+
 func spawn_player() -> void:
 	var new_player: Player
 	
@@ -36,10 +44,18 @@ func spawn_player() -> void:
 		player_reference.queue_free()
 	
 	new_player = player.instantiate()
-	
 	call_deferred("add_child", new_player)
 	player_reference = new_player
 	player_reference.initialize()
+	player_reference.set_cam_bounds(current_stage.get_bounds())
+	player_reference.position = current_stage.get_spawn_position()
+
+func spawn_stage(new_stage: Stage) -> void:
+	if current_stage != null:
+		current_stage.queue_free()
+	current_stage = new_stage
+	current_stage.initialize()
+	call_deferred("add_child", new_stage)
 
 func load_stage(next_stage: int, initial: bool = false) -> void:
 	var new_stage: Stage = stages[next_stage].instantiate()
@@ -47,20 +63,12 @@ func load_stage(next_stage: int, initial: bool = false) -> void:
 	if initial == false:
 		fade_out()
 		await get_tree().create_timer(0.75).timeout
-	else:
-		pass
+	
+	spawn_stage(new_stage)
 	
 	spawn_player()
 	
-	if current_stage != null:
-		current_stage.queue_free()
-		
-	current_stage = new_stage
-	current_stage.initialize()
-	SignalBus.place_player.emit(current_stage.get_spawn_position())
 	fade_in()
-	await get_tree().process_frame
-	call_deferred("add_child", new_stage)
 
 func stage_transition(body: Node) -> void:
 	current_stage_number += 1
@@ -137,5 +145,3 @@ func game_end() -> void:
 	
 	var tween = create_tween()
 	tween.tween_property(game_end_msg, "modulate", Color(1,1,1,1), 3)
-	
-	pass

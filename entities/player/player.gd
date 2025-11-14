@@ -35,7 +35,6 @@ func connect_signals() -> void:
 
 func initialize() -> void:
 	velocity = Vector2.ZERO
-	SignalBus.request_bounds.emit()
 	move_instructions.initialize()
 	connect_signals()
 
@@ -60,8 +59,6 @@ func possess_target() -> void:
 			collider.disabled = true
 			switch_pov(collision)
 			collision.modulate = Color(0.154, 0.653, 0.934, 1.0)
-	else:
-		pass
 
 func switch_pov(target: Node) -> void:
 	var tween = create_tween()
@@ -90,14 +87,9 @@ func release_victim() -> void:
 	SignalBus.release.emit(victim, "NPCMovement")
 
 func lay_to_rest() -> void:
-	var tween = create_tween()
-	
 	move_instructions.active = false
 	sprite.hide()
 	velocity = Vector2.ZERO
-	label.show()
-	tween.tween_property(label, "modulate", Color(1, 1, 1, 1), 5)
-	
 
 func spawn(location: Vector2) -> void:
 	position = location
