@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c74toopt14kld"]
+[gd_scene load_steps=30 format=3 uid="uid://c74toopt14kld"]
 
 [ext_resource type="Script" uid="uid://dbiteo0wl10v0" path="res://system/main.gd" id="1_7am6p"]
 [ext_resource type="PackedScene" uid="uid://cc73q1ensdj1b" path="res://entities/player/player.tscn" id="2_6558x"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ro0p1jfxs05s" path="res://objects/stages/regular/slime_stages/stage_10.tscn" id="16_26vh2"]
 [ext_resource type="PackedScene" uid="uid://yoeaqbxrmkq" path="res://objects/stages/regular/slime_stages/stage_11.tscn" id="17_0jj5d"]
 [ext_resource type="PackedScene" uid="uid://dygw76bbdybnp" path="res://objects/stages/regular/slime_stages/stage_12.tscn" id="18_5skgw"]
+[ext_resource type="PackedScene" uid="uid://3fxy5ub1xeh7" path="res://objects/stages/regular/jump_slime_stages/stage_13.tscn" id="19_scf5j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sq7mp"]
 
@@ -53,7 +54,7 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="Theme" id="Theme_0jj5d"]
+[sub_resource type="Theme" id="Theme_ooqg8"]
 resource_local_to_scene = true
 Button/colors/font_color = Color(0.18139282, 0.5047083, 0.45037234, 1)
 Button/fonts/font = ExtResource("13_io3fq")
@@ -65,6 +66,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_sfy1f")
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("black_screen", "timer", "restart_button", "bgm", "game_clock", "game_end_msg")]
 script = ExtResource("1_7am6p")
+starting_stage = 16
 player = ExtResource("2_6558x")
 stages = Dictionary[int, PackedScene]({
 0: ExtResource("7_7rmty"),
@@ -82,7 +84,8 @@ stages = Dictionary[int, PackedScene]({
 12: ExtResource("15_jalkb"),
 13: ExtResource("16_26vh2"),
 14: ExtResource("17_0jj5d"),
-15: ExtResource("18_5skgw")
+15: ExtResource("18_5skgw"),
+16: ExtResource("19_scf5j")
 })
 black_screen = NodePath("black")
 timer = NodePath("Timer")
@@ -117,7 +120,7 @@ offset_left = 1152.0
 offset_top = 88.0
 offset_right = 1227.0
 offset_bottom = 163.0
-theme = SubResource("Theme_0jj5d")
+theme = SubResource("Theme_ooqg8")
 text = "Play again"
 
 [node name="game_end" type="Label" parent="CanvasLayer"]

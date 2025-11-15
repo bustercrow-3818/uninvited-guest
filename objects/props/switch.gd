@@ -72,3 +72,9 @@ func mode_switch(id: Switch) -> void:
 		npc_mode = !npc_mode
 	else:
 		pass
+
+func flip_sister() -> void:
+	barrier_on = !barrier_on
+	on.visible = !on.visible
+	off.visible = !off.visible
+	npc_mode = !npc_mode
