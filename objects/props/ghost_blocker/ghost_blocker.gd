@@ -1,6 +1,8 @@
 extends StaticBody2D
 class_name Blocker
 
+signal toggled
+
 @export var sprite: AnimatedSprite2D
 @export var wall: Array[Sprite2D]
 
@@ -12,44 +14,49 @@ class_name Blocker
 @export var blue_wall: Texture2D
 @export var red_wall: Texture2D
 
-func activate(body: Node2D) -> void:
-	if body == self:
-		active = true
-		collision_layer = 4
-		collision_mask = 4
-		sprite.play("active")
-		for i in wall:
-			i.texture = blue_wall
+func toggle() -> void:
+	if inverted == true:
+		active = !active
 	
-func deactivate(body: Node2D) -> void:
-	if body == self:
-		active = false
-		collision_layer = 1
-		collision_mask = 1
-		sprite.play("inactive")
-		for i in wall:
-			i.texture = red_wall
-
-func toggle(body: Node2D) -> void:
-	if body != self:
-		return
-	
-	if active == true:
-		deactivate(self)
+	if inverted == true:
+		if active == true:
+			activate()
+		else:
+			deactivate()
 	else:
-		activate(self)
+		if active == true:
+			deactivate()
+		else:
+			activate()
 
 func initialize() -> void:
-	if active == true:
-		activate(self)
-	else:
-		call_deferred("deactivate", self)
-	connect_signals()
+	if active != true:
+		toggle()
 	
-func connect_signals() -> void:
-	if inverted == false:
-		SignalBus.turn_off_blocker.connect(deactivate)
-		SignalBus.turn_on_blocker.connect(activate)
-	else:
-		SignalBus.turn_off_blocker.connect(activate)
-		SignalBus.turn_on_blocker.connect(deactivate)
+	#connect_signals()
+
+func activate() -> void:
+	toggled.emit()
+	active = true
+	collision_layer = 4
+	collision_mask = 4
+	sprite.play("active")
+	for i in wall:
+		i.texture = blue_wall
+
+func deactivate() -> void:
+	toggled.emit()
+	active = false
+	collision_layer = 1
+	collision_mask = 1
+	sprite.play("inactive")
+	for i in wall:
+		i.texture = red_wall
+
+#func connect_signals() -> void:
+	#if inverted == false:
+		#SignalBus.turn_off_blocker.connect(deactivate)
+		#SignalBus.turn_on_blocker.connect(activate)
+	#else:
+		#SignalBus.turn_off_blocker.connect(activate)
+		#SignalBus.turn_on_blocker.connect(deactivate)

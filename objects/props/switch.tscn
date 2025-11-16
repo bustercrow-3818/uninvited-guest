@@ -18,7 +18,7 @@ region = Rect2(76, 104, 39, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1483w"]
 size = Vector2(32, 38)
 
-[node name="lever" type="StaticBody2D" node_paths=PackedStringArray("area", "on", "off", "sound")]
+[node name="lever" type="StaticBody2D" node_paths=PackedStringArray("area", "on", "off", "sound", "debug_label")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_loeb2")
@@ -26,6 +26,7 @@ area = NodePath("detection")
 on = NodePath("on")
 off = NodePath("off")
 sound = NodePath("AudioStreamPlayer2D")
+debug_label = NodePath("Label")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -51,3 +52,9 @@ shape = SubResource("RectangleShape2D_1483w")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_kllgg")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = -37.0
+offset_right = 65.0
+offset_bottom = -14.0

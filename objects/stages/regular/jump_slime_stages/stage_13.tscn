@@ -1244,7 +1244,6 @@ active = true
 [node name="lever_c" parent="." node_paths=PackedStringArray("sister_switch") instance=ExtResource("12_cosko")]
 position = Vector2(187, 272)
 barrier_on = false
-npc_mode = false
 sister_switch = NodePath("../level_tc")
 
 [node name="lever_c2" parent="." instance=ExtResource("12_cosko")]
