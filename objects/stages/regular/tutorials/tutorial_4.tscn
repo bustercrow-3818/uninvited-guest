@@ -1221,5 +1221,5 @@ position = Vector2(230, 259)
 [node name="spawn" type="Node2D" parent="."]
 position = Vector2(94, 244)
 
-[node name="ghost_blocker" parent="." instance=ExtResource("11_4gkd8")]
-position = Vector2(183, 273)
+[node name="ghost_blocker_v" parent="." instance=ExtResource("11_4gkd8")]
+position = Vector2(201, 273)

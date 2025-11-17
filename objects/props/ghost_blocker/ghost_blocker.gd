@@ -17,8 +17,7 @@ signal toggled
 func toggle() -> void:
 	if inverted == true:
 		active = !active
-	
-	if inverted == true:
+
 		if active == true:
 			activate()
 		else:
@@ -30,13 +29,13 @@ func toggle() -> void:
 			activate()
 
 func initialize() -> void:
-	if active != true:
-		toggle()
-	
-	#connect_signals()
+	if active == true:
+		activate()
+	else:
+		deactivate()
 
 func activate() -> void:
-	toggled.emit()
+	toggled.emit(true)
 	active = true
 	collision_layer = 4
 	collision_mask = 4
@@ -45,18 +44,10 @@ func activate() -> void:
 		i.texture = blue_wall
 
 func deactivate() -> void:
-	toggled.emit()
+	toggled.emit(false)
 	active = false
 	collision_layer = 1
 	collision_mask = 1
 	sprite.play("inactive")
 	for i in wall:
 		i.texture = red_wall
-
-#func connect_signals() -> void:
-	#if inverted == false:
-		#SignalBus.turn_off_blocker.connect(deactivate)
-		#SignalBus.turn_on_blocker.connect(activate)
-	#else:
-		#SignalBus.turn_off_blocker.connect(activate)
-		#SignalBus.turn_on_blocker.connect(deactivate)
